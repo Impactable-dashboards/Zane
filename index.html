@@ -1,0 +1,1493 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>ZANE Productions · Intelligence Room</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,600&display=swap" rel="stylesheet">
+<style>
+
+
+:root{
+  --asphalt:#0A0A0C;--concrete:#15151A;--court:#22222A;--bone:#F4F1EA;--chalk:#D8D4C8;
+  --navy:#0D2D5E;--navy-deep:#071A38;--blue:#1B9BD1;--blue-soft:#5BB8E0;
+  --canopy:#D4FF3D;--moss:#7BAA3E;--terracotta:#C4521F;--hazard:#FF5A1F;--clay:#FFB627;--jet-pink:#FF2D7A;
+  --bg:var(--asphalt);--surface:var(--concrete);--line:var(--court);--ink:var(--bone);--muted:#9a9788;--card:#15151A;
+  --canopy-text:#D4FF3D;      /* readable on dark bg */
+  --moss-text:#7BAA3E;--clay-text:#FFB627;--blue-text:#1B9BD1;--terra-text:#C4521F;--pink-text:#FF2D7A;--terra-text:#C4521F;
+  /* SVG theme-independent fills */
+  --barcanopy:#D4FF3D;--barblue:#1B9BD1;--barterra:#C4521F;--barclay:#FFB627;--barmoss:#7BAA3E;--barpink:#FF2D7A;
+}
+html[data-theme="light"]{
+  --bg:#F4F1EA;--surface:#FBFAF6;--line:#E0DCCF;--ink:#161512;--muted:#6b6659;--card:#FFFFFF;--chalk:#4a463c;
+  --canopy-text:#5C7200;      /* ~8:1 on bone */
+  --moss-text:#4a7a20;--clay-text:#8a5e00;--terra-text:#9c3d13;--blue-text:#0f6a92;--pink-text:#c01458;
+}
+.dark-panel{--canopy-text:#D4FF3D;--moss-text:#7BAA3E;--clay-text:#FFB627;--ink:#F4F1EA;--chalk:rgba(216,212,200,.85);--muted:rgba(216,212,200,.7);color:var(--ink)}
+.dark-panel .btn.ghost{border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.8)}
+.dark-panel .btn.ghost:hover{border-color:rgba(255,255,255,.6);color:#fff}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(244,241,234,.035) 1px,transparent 0);background-size:4px 4px;pointer-events:none;z-index:1}
+html[data-theme="light"] body::before{background-image:radial-gradient(circle at 1px 1px,rgba(0,0,0,.03) 1px,transparent 0)}
+.mono{font-family:'JetBrains Mono',monospace}
+a{color:inherit}
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1180px;margin:0 auto;padding:12px 28px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.brand{font-family:Arial,sans-serif;font-weight:900;font-size:16px;letter-spacing:-.5px}
+.brand .imp{color:var(--ink)} .brand .able{color:var(--blue)}
+.brand .sep{color:var(--muted);font-family:'JetBrains Mono';font-size:11px;font-weight:400;margin-left:10px;letter-spacing:.1em}
+.tabs{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap;align-items:center}
+.tab{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:none;border:1px solid transparent;padding:7px 12px;border-radius:7px;cursor:pointer;transition:all .18s;white-space:nowrap;text-decoration:none}
+.tab:hover{color:var(--ink);border-color:var(--line)}
+.tab.active{color:var(--asphalt);background:var(--canopy);font-weight:700}
+.nav-cta{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;padding:8px 14px;border-radius:7px;background:var(--blue);color:#04121f;text-decoration:none;white-space:nowrap}
+.theme-btn{background:none;border:1px solid var(--line);color:var(--muted);border-radius:7px;width:34px;height:32px;cursor:pointer;font-size:14px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.view{display:none;padding:44px 0 70px;animation:fade .35s ease}
+.view.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+/* TYPE */
+.kicker{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--jet-pink);margin-bottom:14px}
+h1.big{font-family:'Archivo Black',sans-serif;font-size:clamp(34px,5.6vw,62px);line-height:.95;letter-spacing:-.03em;text-transform:uppercase;margin-bottom:20px}
+h1.big .b{color:var(--canopy-text);font-style:italic;display:inline-block;transform:skewX(-5deg)}
+.dark-panel h1.big .b{color:var(--canopy)}
+h2.sec{font-family:'Archivo Black',sans-serif;font-size:clamp(24px,3.4vw,38px);line-height:1;letter-spacing:-.02em;text-transform:uppercase;margin:6px 0 6px}
+h2.sec em{color:var(--canopy-text);font-style:italic}
+h2.sec .bl{color:var(--blue-text)} h2.sec .te{color:var(--terra-text)}
+h3.sub{font-family:'Archivo Black',sans-serif;font-size:19px;text-transform:uppercase;letter-spacing:-.01em;margin:34px 0 12px}
+h3.sub em{color:var(--canopy-text);font-style:italic}
+.lede{font-size:16.5px;color:var(--chalk);max-width:860px;margin-bottom:14px}
+.lede strong{color:var(--ink)}
+p.body{font-size:14.5px;color:var(--chalk);max-width:840px;margin:10px 0}
+p.body strong{color:var(--ink)}
+.secnum{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.25em;color:var(--pink-text);margin-bottom:10px;margin-top:8px}
+.editorial{font-family:'Fraunces',serif;font-style:italic;font-size:19px;line-height:1.4;color:var(--chalk);max-width:820px}
+.editorial .em{color:var(--canopy-text)}
+.dark-panel .editorial .em{color:var(--canopy)}
+.metastrip{display:flex;gap:26px;flex-wrap:wrap;font-family:'JetBrains Mono';font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+.metastrip b{color:var(--blue-soft);font-weight:700}
+.dark-panel .metastrip b{color:var(--blue-soft)}
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 24px;margin-bottom:14px;position:relative;overflow:hidden}
+.card.tl{border-left:4px solid var(--canopy)} .card.tb{border-left:4px solid var(--blue)} .card.tt{border-left:4px solid var(--terracotta)}
+.card.tc{border-left:4px solid var(--clay)}
+.chead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+.chead .lbl{font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.chead .nm{font-family:'Archivo Black',sans-serif;font-size:20px;letter-spacing:-.01em}
+.chead .url{font-family:'JetBrains Mono';font-size:11px;color:var(--muted)}
+.chead .tags{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-family:'JetBrains Mono';font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:20px;padding:3px 9px}
+.read{font-size:14px;color:var(--ink);margin:8px 0 4px}
+.read strong{color:var(--canopy-text);font-weight:700}
+.dark-panel .read strong{color:var(--canopy)}
+.why{background:rgba(0,0,0,.05);border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:10px 14px;margin-top:12px;font-size:13px;color:var(--chalk)}
+[data-theme="dark"] [data-theme="dark"] .why{background:rgba(255,255,255,.05)}
+.why b{color:var(--blue-text)} [data-theme="dark"] .why b{color:var(--blue-soft)}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:6px 22px;margin-top:12px}
+@media(max-width:640px){.facts{grid-template-columns:1fr}}
+.fact{font-size:12.5px;color:var(--chalk);display:flex;gap:8px;padding:5px 0;border-top:1px solid var(--line)}
+.fact .fk{font-family:'JetBrains Mono';font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);min-width:86px;flex-shrink:0}
+/* toggle */
+.tog{margin-top:12px}
+.tog>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono';font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:7px 13px;transition:all .18s}
+.tog>summary::-webkit-details-marker{display:none}
+.tog>summary:hover{border-color:var(--blue);color:var(--blue)}
+.tog>summary .chip{font-size:13px;font-weight:700;color:var(--blue)}
+.tog[open]>summary .vshow{display:none}
+.tog[open]>summary .chip{color:var(--terracotta)}
+.tog .togbody{padding:14px 2px 4px}
+/* badges */
+.badge{font-family:'JetBrains Mono';font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:3px 9px;border-radius:20px;display:inline-block}
+.b-hi{background:var(--barcanopy);color:#0A0A0C} .b-md{background:rgba(27,155,209,.18);color:var(--blue-soft);border:1px solid var(--blue)}
+.b-lo{background:transparent;color:var(--muted);border:1px solid var(--line)}
+/* grids */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:820px){.grid2,.grid3{grid-template-columns:1fr}}
+/* figures */
+figure{margin:18px 0}
+.figwrap{width:100%}
+@media(max-width:700px){.figwrap{overflow-x:auto}.figwrap svg{min-width:620px}}
+figure svg{width:100%;height:auto;display:block}
+figcaption{font-family:'JetBrains Mono';font-size:11px;color:var(--muted);margin-top:8px;letter-spacing:.02em;line-height:1.5}
+.svgtx{font-family:'Inter',sans-serif}
+.svgmono{font-family:'JetBrains Mono',monospace}
+/* pinned panels */
+.pin{background:var(--navy-deep);border:1px solid var(--navy);border-radius:14px;padding:26px 28px;margin:18px 0}
+.pin .plbl{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5BB8E0;margin-bottom:10px}
+.pin .ptext{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(19px,2.4vw,26px);line-height:1.34;color:#F4F1EA}
+.pin .ptext .em{color:#D4FF3D;font-style:normal}
+/* lists */
+ul.clean{list-style:none;margin:8px 0}
+ul.clean li{position:relative;padding:7px 0 7px 22px;font-size:14px;color:var(--chalk);border-top:1px solid var(--line)}
+ul.clean li:first-child{border-top:none}
+ul.clean li::before{content:'';position:absolute;left:2px;top:14px;width:8px;height:8px;border-radius:2px;background:var(--barcanopy)}
+ul.clean li.b::before{background:var(--barblue)} ul.clean li.t::before{background:var(--barterra)}
+ul.clean li strong{color:var(--ink)}
+/* hooks */
+.hook{font-family:'Fraunces',serif;font-style:italic;font-size:16px;color:var(--ink);padding:10px 0;border-top:1px solid var(--line)}
+.hook:first-child{border-top:none}
+/* CTA */
+.cta{background:var(--navy-deep);border-radius:16px;padding:40px;text-align:center;margin-top:30px}
+.cta h2{font-family:'Archivo Black',sans-serif;font-size:clamp(24px,3.4vw,36px);text-transform:uppercase;color:#F4F1EA;letter-spacing:-.02em;margin-bottom:12px;line-height:1.02}
+.cta h2 .em{color:#D4FF3D}
+.cta p{color:rgba(216,212,200,.85);max-width:560px;margin:0 auto 22px;font-size:14.5px}
+.btnrow{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{font-family:'JetBrains Mono';font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;padding:13px 24px;border-radius:9px;text-decoration:none;cursor:pointer;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{background:var(--canopy);color:#0A0A0C}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.28);color:rgba(255,255,255,.82)}
+/* footer */
+.foot{border-top:1px solid var(--line);margin-top:40px;padding:24px 0 60px}
+.foot .fnote{font-family:'JetBrains Mono';font-size:11px;color:var(--muted);line-height:1.7;max-width:900px}
+.foot details{margin-top:10px}
+.foot summary{font-family:'JetBrains Mono';font-size:11px;color:var(--blue);cursor:pointer;letter-spacing:.04em}
+.foot .full{font-size:11.5px;color:var(--muted);line-height:1.7;margin-top:10px;max-width:900px}
+.tierhead{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin:28px 0 4px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.tierhead.p1{color:var(--terra-text)} .tierhead.p2{color:var(--canopy-text)} .tierhead.p3{color:var(--blue-text)}
+
+/* --- targeting additions --- */
+.ladder-fig{margin:20px 0}
+.tierlabel{display:flex;align-items:center;gap:10px;font-family:'JetBrains Mono';font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:34px 0 6px;font-weight:700;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.tierlabel .tnum{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:#0A0A0C}
+.tw{color:var(--canopy-text)} .tw .tnum{background:var(--barcanopy)}
+.ta{color:var(--blue-text)} .ta .tnum{background:var(--barblue);color:#04121f}
+.tc{color:var(--terra-text)} .tc .tnum{background:var(--barterra);color:#fff}
+.tagl{font-family:'Fraunces',serif;font-style:italic;font-size:15.5px;color:var(--chalk);margin:2px 0 14px;max-width:820px}
+.ladder{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+@media(max-width:760px){.ladder{grid-template-columns:1fr}}
+.ftag{font-family:'JetBrains Mono';font-size:11px;background:rgba(0,0,0,.05);border:1px solid var(--line);color:var(--chalk);padding:3px 9px;border-radius:6px;display:inline-block;margin:2px 3px 2px 0}
+[data-theme="dark"] .ftag{background:rgba(255,255,255,.05)}
+.ftag b{color:var(--ink)}
+.ftable{width:100%;border-collapse:collapse;margin:8px 0 4px;font-size:12.5px}
+.ftable td{padding:7px 10px;border-top:1px solid var(--line);vertical-align:top;color:var(--chalk)}
+.ftable tr td:first-child{font-family:'JetBrains Mono';font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);width:150px;white-space:nowrap}
+.ftable tr td:first-child.wide{width:auto}
+.ftable .est td{border-top:2px solid var(--blue)}
+.ftable .est td:last-child{color:var(--ink);font-weight:600}
+.pill{font-family:'JetBrains Mono';font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:20px;font-weight:700;display:inline-block}
+.p-hi{background:var(--barcanopy);color:#0A0A0C} .p-md{background:rgba(255,182,39,.2);color:var(--clay-text);border:1px solid var(--clay)} .p-lo{background:transparent;color:var(--muted);border:1px solid var(--line)}
+.flagbar{background:rgba(255,90,31,.09);border:1px solid rgba(255,90,31,.35);border-radius:10px;padding:12px 16px;margin:12px 0;font-size:13px;color:var(--chalk)}
+.flagbar b{color:var(--hazard);font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.08em;text-transform:uppercase}
+.kwtable{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0}
+.kwtable th{font-family:'JetBrains Mono';font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+.kwtable td{padding:9px 10px;border-top:1px solid var(--line);color:var(--chalk);vertical-align:top}
+.kwtable td:first-child{color:var(--ink);font-weight:600}
+.tblwrap{width:100%}
+@media(max-width:700px){.tblwrap{overflow-x:auto}.tblwrap .kwtable{min-width:560px}}
+.kwtable .kwc{font-family:'JetBrains Mono';font-size:12px}
+.calloutbox{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:0 12px 12px 0;padding:18px 20px;margin:16px 0}
+.calloutbox h4{font-family:'Archivo Black';font-size:14px;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:8px}
+.calloutbox h4 em{color:var(--canopy-text);font-style:italic}
+
+/* --- ecosystem additions --- */
+.s-pill{font-family:'JetBrains Mono';font-size:10px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;padding:3px 9px;border-radius:20px;display:inline-block;white-space:nowrap}
+.s-well{background:var(--barmoss);color:#0A0A0C}
+.s-thin{background:rgba(255,182,39,.18);color:var(--clay-text);border:1px solid var(--clay)}
+.s-build{background:rgba(27,155,209,.18);color:var(--blue-soft);border:1px solid var(--blue)}
+.s-later{background:transparent;color:var(--muted);border:1px solid var(--line)}
+.foot-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr}}
+.fcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;position:relative;overflow:hidden}
+.fcard .fh{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.fcard .fn{font-family:'Archivo Black';font-size:15px;letter-spacing:-.01em}
+.fcard .fs{margin-left:auto}
+.fcard p{font-size:13px;color:var(--chalk);margin:4px 0}
+.fcard .role{font-family:'JetBrains Mono';font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.lyr{display:grid;grid-template-columns:130px 1fr;gap:14px;align-items:start;padding:16px 0;border-top:1px solid var(--line)}
+@media(max-width:640px){.lyr{grid-template-columns:1fr;gap:6px}}
+.lyr .lname{font-family:'Archivo Black';font-size:15px;text-transform:uppercase;letter-spacing:-.01em}
+.lyr .lfor{font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-top:4px;line-height:1.5}
+.lyr .lread{font-size:13.5px;color:var(--chalk)}
+.lyr .lread b{color:var(--ink)}
+.lyr .lrun{margin-top:6px}
+
+
+/* --- room additions --- */
+.moves{margin:20px 0}
+.move{display:flex;align-items:flex-start;gap:16px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:12px;padding:18px 20px;margin-bottom:12px;text-decoration:none;transition:transform .15s,border-color .18s;cursor:pointer}
+.move:hover{transform:translateX(3px);border-left-color:var(--canopy-text)}
+.move .mnum{font-family:'Archivo Black';font-size:24px;color:var(--pink-text);line-height:1;min-width:38px}
+.move .mbody{flex:1}
+.move .mt{display:block;font-family:'Archivo Black';font-size:17px;letter-spacing:-.01em;margin-bottom:4px}
+.move .md{display:block;font-size:13.5px;color:var(--chalk);line-height:1.5}
+.move .marrow{font-family:'JetBrains Mono';font-size:11px;color:var(--blue-text);align-self:center;white-space:nowrap;text-transform:uppercase;letter-spacing:.06em}
+.chan{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin-bottom:14px;position:relative}
+.chan.cc{border-left:4px solid var(--canopy)} .chan.cb{border-left:4px solid var(--blue)} .chan.ct{border-left:4px solid var(--terracotta)} .chan.cl{border-left:4px solid var(--clay)} .chan.cm{border-left:4px solid var(--moss)}
+.chan .chh{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.chan .clbl{font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.chan .cttl{font-family:'Archivo Black';font-size:17px;letter-spacing:-.01em}
+.chan .ctags{margin-left:auto;font-family:'JetBrains Mono';font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.chan p{font-size:13.5px;color:var(--chalk);margin:4px 0}
+.video{position:relative;width:100%;padding-bottom:56.25%;height:0;border-radius:12px;overflow:hidden;border:1px solid var(--line);margin:16px 0}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.mladder{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:16px 0}
+@media(max-width:760px){.mladder{grid-template-columns:1fr}}
+.mrung{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.mrung .mrk{font-family:'JetBrains Mono';font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:6px}
+.mrung.t1 .mrk{color:var(--moss-text)} .mrung.t2 .mrk{color:var(--clay-text)} .mrung.t3 .mrk{color:var(--blue-text)}
+.mrung h4{font-family:'Archivo Black';font-size:15px;margin-bottom:6px}
+.mrung p{font-size:12.5px;color:var(--chalk)}
+.proof{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--canopy);border-radius:12px;padding:18px 20px;margin-bottom:12px}
+.proof .ph{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.proof .pnm{font-family:'Archivo Black';font-size:16px}
+.proof .pmetric{font-family:'JetBrains Mono';font-size:12px;color:var(--canopy-text);font-weight:700}
+.proof .pwhy{font-size:13.5px;color:var(--chalk);margin-top:6px}
+.proof .pwhy b{color:var(--ink)}
+.pricetable{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+.pricetable th{text-align:left;padding:12px 12px;vertical-align:bottom;border-bottom:1px solid var(--line)}
+.pricetable th .pln{font-family:'Archivo Black';font-size:16px;display:block}
+.pricetable th .prc{font-family:'JetBrains Mono';font-size:12px;color:var(--muted);display:block;margin-top:3px}
+.pricetable td{padding:9px 12px;border-bottom:1px solid var(--line);color:var(--chalk);vertical-align:top}
+.pricetable td:first-child{font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.pricetable .rowsec td{background:rgba(0,0,0,.04);font-family:'JetBrains Mono';font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);font-weight:700}
+[data-theme="dark"] .pricetable .rowsec td{background:rgba(255,255,255,.05)}
+.pricetable .rec{background:rgba(27,155,209,.07)}
+[data-theme="dark"] .pricetable .rec{background:rgba(27,155,209,.12)}
+.pricetable th.rechead{background:#071A38;border-top:3px solid var(--canopy);border-radius:10px 10px 0 0;padding-top:14px}
+.pricetable th.rechead .pln{color:#F4F1EA} .pricetable th.rechead .prc{color:#9fd8ee}
+.recpill{display:inline-block;background:var(--canopy);color:#0A0A0C;font-family:'JetBrains Mono';font-size:8.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:20px;margin-bottom:6px}
+.ck{color:#3f6a1c;font-weight:700} [data-theme="dark"] .ck{color:#7BAA3E}
+.cross{color:var(--muted)}
+.part{color:#8a5e00} [data-theme="dark"] .part{color:#FFB627}
+.pricenote{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--canopy);border-radius:0 12px 12px 0;padding:14px 18px;margin:14px 0;font-size:13.5px;color:var(--chalk)}
+.pricenote b{color:var(--ink)}
+.fitgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+@media(max-width:760px){.fitgrid{grid-template-columns:1fr}}
+.pfwrap{width:100%}
+@media(max-width:820px){.pfwrap{overflow-x:auto}.pfwrap .pricetable{min-width:720px}}
+
+/* room-shell nav */
+.rtabs{display:flex;gap:2px;flex-wrap:wrap;align-items:center}
+.rtab{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);background:none;border:0;padding:8px 12px;border-radius:8px;cursor:pointer;text-decoration:none;white-space:nowrap}
+.rtab:hover{color:var(--ink)}
+.rtab.active{background:var(--canopy);color:#0A0A0C;font-weight:700}
+@media(max-width:900px){.rtabs{gap:0}.rtab{padding:7px 8px;font-size:10px}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-in">
+    <span class="brand"><span class="imp">Impact</span><span class="able">able</span><span class="sep">ZANE · INTELLIGENCE</span></span>
+    <div class="rtabs">
+      <a class="rtab active" href="#overview" data-view="overview">Overview</a>
+      <a class="rtab" href="#whitespace" data-view="whitespace">White Space</a>
+      <a class="rtab" href="#targeting" data-view="targeting">Targeting</a>
+      <a class="rtab" href="#ecosystem" data-view="ecosystem">Ecosystem</a>
+      <a class="rtab" href="#howitworks" data-view="howitworks">How It Works</a>
+      <a class="rtab" href="#paths" data-view="paths">Paths Forward</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">☾</button>
+      <a class="nav-cta" href="https://landbot.online/v3/H-2201411-ZNNL8EM9RF7C2XAC/index.html" target="_blank" rel="noopener">Book a call</a>
+    </div>
+  </div>
+</nav>
+<main class="wrap">
+<section class="view active" id="overview">
+  <div class="dark-panel pin" style="border-radius:16px;padding:36px 34px;margin-top:26px">
+    <div class="kicker" style="color:var(--jet-pink)">Intelligence Room · ZANE Productions</div>
+    <h1 class="big">Strong ends.<br>Build the <span class="b">middle.</span></h1>
+    <p class="lede" style="color:rgba(216,212,200,.92);max-width:820px">ZANE already does the two hardest things in this market: it creates demand through a real founder brand and captures it through category-leading organic search. What sits between them and the quote form is open. This room maps that opening, who to reach, and where a first motion with us would start. It is yours to keep either way.</p>
+    <div class="metastrip" style="border-top-color:rgba(255,255,255,.15)">
+      <span>Competitors analyzed · <b>10</b></span>
+      <span>Cold personas · <b>3</b></span>
+      <span>Signal sources · <b>8</b></span>
+      <span>Recommended start · <b>Option 1</b></span>
+    </div>
+  </div>
+
+  <div class="secnum">THE SEQUENCE</div>
+  <h2 class="sec">Five moves, <em>in order</em></h2>
+  <p class="body">Each move is a full section in this room. Read straight through, or jump to any tab.</p>
+  <div class="moves">
+    <a class="move" data-goto="whitespace">
+      <span class="mnum">01</span>
+      <span class="mbody"><span class="mt">A barbell market with an empty middle</span><span class="md">Prestige craft on one end, agency-gated and slow. Fast, generic volume on the other. Broadcast craft delivered direct, at campaign scale, across every category is the middle almost no one holds. That is ZANE.</span></span>
+      <span class="marrow">White Space →</span>
+    </a>
+    <a class="move" data-goto="targeting">
+      <span class="mnum">02</span>
+      <span class="mbody"><span class="mt">Reach the buyers who feel the gap</span><span class="md">The marketing and creative leaders who commission video and answer for results. Warm pool first, starting with the audience ZANE already owns, then signal-scored accounts, then a single cold test.</span></span>
+      <span class="marrow">Targeting →</span>
+    </a>
+    <a class="move" data-goto="ecosystem">
+      <span class="mnum">03</span>
+      <span class="mbody"><span class="mt">The missing middle</span><span class="md">Create and Capture both run well and flow into one inbound form. No layer qualifies who arrived, retargets the fits, or measures what any of it produced. That middle is the opportunity.</span></span>
+      <span class="marrow">Ecosystem →</span>
+    </a>
+    <a class="move" data-goto="howitworks">
+      <span class="mnum">04</span>
+      <span class="mbody"><span class="mt">The system that fills it</span><span class="md">One motion with LinkedIn as the hub, fed by the founder brand and by search, with a signal layer underneath and honest measurement that answers to a CFO, not a dashboard.</span></span>
+      <span class="marrow">How It Works →</span>
+    </a>
+    <a class="move" data-goto="paths">
+      <span class="mnum">05</span>
+      <span class="mbody"><span class="mt">Where to start</span><span class="md">Where we fit, how we would run it, matched proof, and three scoped options with a recommended place to start that fills the top gaps without overreaching.</span></span>
+      <span class="marrow">Paths Forward →</span>
+    </a>
+  </div>
+
+  <div class="editorial" style="margin-top:20px;border-top:1px solid var(--line);padding-top:20px">The two things most video companies never build, ZANE already has. <span class="em">The work is the middle, not the ends.</span></div>
+</section>
+<section class="view" id="whitespace">
+
+
+  <!-- HERO -->
+  <div class="dark-panel pin" style="border-radius:16px;padding:34px 32px;margin-top:26px">
+    <div class="kicker" style="color:var(--jet-pink)">Competitive White Space · 10 competitors · 3 tiers</div>
+    <h1 class="big">Craft on one end.<br>Volume on the other.<br>ZANE owns the <span class="b">empty middle.</span></h1>
+    <p class="lede" style="color:rgba(216,212,200,.9);max-width:800px">The market is a barbell. On one end, the prestige houses make one cinematic hero, gated behind an ad agency and a three-month calendar. On the other, the productized shops make many assets fast, but generic. Broadcast-grade craft, delivered directly to the brand, as a full campaign, in weeks, across every format and category, is the middle almost no one holds. That middle is ZANE.</p>
+    <div class="metastrip" style="border-top-color:rgba(255,255,255,.15)">
+      <span>Prestige / roster · <b>4</b></span>
+      <span>Direct-to-brand · <b>3</b></span>
+      <span>Productized / subscription · <b>3</b></span>
+      <span>Open lanes · <b>4</b></span>
+    </div>
+  </div>
+
+  <!-- POSITIONING LANE MAP -->
+  <div class="secnum">01 / THE LANDSCAPE</div>
+  <h2 class="sec">Where everyone <em>clusters</em></h2>
+  <p class="body">Plotting the ten by what they sell on (prestige and scarcity versus access and value) and how they deliver (bespoke craft versus system and scale) shows the crowd. The prestige tier packs the top-left. The productized tier fills the bottom-right. ZANE sits in a lightly-occupied middle: accessible and fast, still bespoke and full-service.</p>
+  <figure>
+    <div class="figwrap">
+    <svg viewBox="0 0 900 520" role="img" aria-label="Positioning map of ten competitors plus ZANE across two axes">
+      <defs></defs>
+      <!-- axes -->
+      <line x1="90" y1="40" x2="90" y2="450" stroke="var(--line)" stroke-width="1.5"/>
+      <line x1="90" y1="450" x2="860" y2="450" stroke="var(--line)" stroke-width="1.5"/>
+      <!-- quadrant guide -->
+      <line x1="475" y1="40" x2="475" y2="450" stroke="var(--line)" stroke-width="1" stroke-dasharray="4 5" opacity=".6"/>
+      <line x1="90" y1="245" x2="860" y2="245" stroke="var(--line)" stroke-width="1" stroke-dasharray="4 5" opacity=".6"/>
+      <!-- axis labels -->
+      <text x="475" y="486" text-anchor="middle" class="svgmono" font-size="12" fill="var(--muted)">ACCESS &amp; VALUE  →</text>
+      <text x="475" y="502" text-anchor="middle" class="svgmono" font-size="11" fill="var(--muted)">how they compete on price and reach</text>
+      <text x="70" y="245" text-anchor="middle" class="svgmono" font-size="12" fill="var(--muted)" transform="rotate(-90 70 245)">BESPOKE CRAFT   ↕   SYSTEM &amp; SCALE</text>
+      <text x="120" y="34" class="svgmono" font-size="11" fill="var(--muted)">← prestige &amp; scarcity</text>
+      <!-- plotted competitors: cx,cy,label,color -->
+      <!-- prestige (terracotta), upper-left -->
+      <g>
+        <circle cx="150" cy="90" r="7" fill="var(--barterra)"/><text x="163" y="94" class="svgtx" font-size="12.5" fill="var(--ink)">Caviar</text>
+        <circle cx="205" cy="120" r="7" fill="var(--barterra)"/><text x="218" y="124" class="svgtx" font-size="12.5" fill="var(--ink)">division7</text>
+        <circle cx="255" cy="160" r="7" fill="var(--barterra)"/><text x="268" y="164" class="svgtx" font-size="12.5" fill="var(--ink)">Stept</text>
+        <circle cx="330" cy="150" r="7" fill="var(--barterra)"/><text x="343" y="154" class="svgtx" font-size="12.5" fill="var(--ink)">Huffman</text>
+        <circle cx="380" cy="115" r="7" fill="var(--barterra)"/><text x="393" y="119" class="svgtx" font-size="12.5" fill="var(--ink)">Sandwich</text>
+      </g>
+      <!-- direct-to-brand (canopy) -->
+      <g>
+        <circle cx="600" cy="205" r="7" fill="var(--barmoss)"/><text x="613" y="209" class="svgtx" font-size="12.5" fill="var(--ink)">Sparkhouse</text>
+      </g>
+      <!-- productized (blue), lower-right -->
+      <g>
+        <circle cx="690" cy="330" r="7" fill="var(--barblue)"/><text x="703" y="334" class="svgtx" font-size="12.5" fill="var(--ink)">Lemonlight</text>
+        <circle cx="560" cy="360" r="7" fill="var(--barblue)"/><text x="573" y="364" class="svgtx" font-size="12.5" fill="var(--ink)">Demo Duck</text>
+        <circle cx="760" cy="380" r="7" fill="var(--barblue)"/><text x="620" y="398" class="svgtx" font-size="12.5" fill="var(--ink)">Vidico</text>
+        <line x1="700" y1="392" x2="753" y2="382" stroke="var(--line)" stroke-width="1"/>
+        <circle cx="800" cy="415" r="7" fill="var(--barblue)"/><text x="700" y="428" class="svgtx" font-size="12.5" fill="var(--ink)">Superside</text>
+        <line x1="770" y1="424" x2="793" y2="417" stroke="var(--line)" stroke-width="1"/>
+      </g>
+      <!-- ZANE highlighted -->
+      <g>
+        <circle cx="500" cy="175" r="11" fill="var(--barclay)" stroke="var(--ink)" stroke-width="2"/>
+        <text x="518" y="172" class="svgmono" font-size="14" font-weight="700" fill="var(--clay-text)">ZANE</text>
+        <text x="518" y="188" class="svgmono" font-size="10.5" fill="var(--muted)">accessible + bespoke</text>
+      </g>
+    </svg>
+    </div>
+    <figcaption>Positioning estimate from public sites, not a ranking. Circle placement is directional. ZANE occupies the accessible-yet-bespoke middle that the prestige and productized clusters leave open.</figcaption>
+  </figure>
+
+
+  <!-- COMPETITOR PROFILES -->
+  <div class="secnum">02 / THE FIELD</div>
+  <h2 class="sec">All ten, <em>in full</em></h2>
+  <p class="body">Every profile is on screen. The strategic read stays open; the field-by-field detail sits behind a toggle on each card. Grouped by the three tiers.</p>
+
+  <div class="tierhead p1">Tier 1 · Prestige &amp; roster: scarcity, awards, representation, agency-facing</div>
+
+  <div class="card tt">
+    <div class="chead"><span class="lbl" style="color:var(--terra-text)">Prestige</span><span class="nm">Caviar</span><span class="url">caviar.tv</span>
+      <span class="tags"><span class="tag">Global</span><span class="tag">Oscar-winning</span><span class="tag">Custom price</span></span></div>
+    <p class="read">Academy Award-winning global studio spanning feature film, TV, advertising, and A-list music video across six offices. <strong>The aspirational anchor, a different weight class</strong> that competes on prestige and talent, not access or speed.</p>
+    <div class="why"><b>Read for ZANE:</b> not a like-for-like rival. It sets the ceiling of the category and shows how far "prestige and scarcity" sits from ZANE's accessible, direct model.</div>
+    <details class="tog"><summary><span class="vshow">Show </span>full profile <span class="chip">+</span></summary><div class="togbody">
+      <div class="facts">
+        <div class="fact"><span class="fk">Founded</span>~2005 (Belgium); 20 years in 2025</div>
+        <div class="fact"><span class="fk">Positioning</span>"If it's visual, if it's content, we produce it"</div>
+        <div class="fact"><span class="fk">Hook</span>Prestige, awards, A-list talent representation</div>
+        <div class="fact"><span class="fk">Audience</span>Global brands, agencies, A-list artists, studios</div>
+        <div class="fact"><span class="fk">Services</span>Commercials, feature film, TV, music video, post, photo</div>
+        <div class="fact"><span class="fk">Pricing</span>Custom, sales-led, not public</div>
+        <div class="fact"><span class="fk">Proof</span>Oscars, Cannes, Berlinale; Super Bowl; Olivia Rodrigo, Jay-Z, Dua Lipa</div>
+        <div class="fact"><span class="fk">Limitations</span>Top-of-market cost; no transparent pricing; not fast direct-to-SMB</div>
+      </div>
+    </div></details>
+  </div>
+
+  <div class="card tt">
+    <div class="chead"><span class="lbl" style="color:var(--terra-text)">Prestige</span><span class="nm">division7</span><span class="url">division7.xyz</span>
+      <span class="tags"><span class="tag">LA + NYC</span><span class="tag">Ad Age A-List</span><span class="tag">Custom price</span></span></div>
+    <p class="read">Ad Age A-List creative studio built on a curated director roster, doing Super Bowl and national brand work through agencies. <strong>Competes on craft prestige and representation</strong>, not accessibility.</p>
+    <div class="why"><b>Read for ZANE:</b> the representation model gatekeeps access to its directors. ZANE's founder-direct model is the opposite value, and faster.</div>
+    <details class="tog"><summary><span class="vshow">Show </span>full profile <span class="chip">+</span></summary><div class="togbody">
+      <div class="facts">
+        <div class="fact"><span class="fk">Founded</span>~2015</div>
+        <div class="fact"><span class="fk">Positioning</span>"Craft and storytelling with strategic distribution"</div>
+        <div class="fact"><span class="fk">Hook</span>Craft, roster, Ad Age A-List standing</div>
+        <div class="fact"><span class="fk">Audience</span>National brands and their agencies</div>
+        <div class="fact"><span class="fk">Services</span>Commercials, branded film, music video, experiential, post</div>
+        <div class="fact"><span class="fk">Pricing</span>Custom, sales-led</div>
+        <div class="fact"><span class="fk">Proof</span>Ad Age A-List; adidas (Messi, Mahomes), ESPN, Amica</div>
+        <div class="fact"><span class="fk">Limitations</span>No public pricing; agency route; not for fast direct briefs</div>
+      </div>
+    </div></details>
+  </div>
+
+  <div class="card tt">
+    <div class="chead"><span class="lbl" style="color:var(--terra-text)">Prestige</span><span class="nm">Stept Studios</span><span class="url">steptstudios.com</span>
+      <span class="tags"><span class="tag">LA · NYC · Denver</span><span class="tag">Roster</span><span class="tag">Custom price</span></span></div>
+    <p class="read">Award-winning studio making "work that feels more like entertainment than advertising," with a director roster and sports-lifestyle DNA. <strong>Competes on craft and entertainment value</strong>, not price or access.</p>
+    <div class="why"><b>Read for ZANE:</b> strong on authentic brand content, but premium and light on music video and SMB. ZANE's breadth and access sit outside Stept's lane.</div>
+    <details class="tog"><summary><span class="vshow">Show </span>full profile <span class="chip">+</span></summary><div class="togbody">
+      <div class="facts">
+        <div class="fact"><span class="fk">Founded</span>2009</div>
+        <div class="fact"><span class="fk">Positioning</span>"Entertainment, not advertising"; director roster</div>
+        <div class="fact"><span class="fk">Hook</span>Entertainment-grade branded content; authenticity</div>
+        <div class="fact"><span class="fk">Audience</span>Brands, agencies, platforms; sports, lifestyle, consumer</div>
+        <div class="fact"><span class="fk">Services</span>Commercials, branded film, documentary, experiential, post</div>
+        <div class="fact"><span class="fk">Pricing</span>Custom, sales-led</div>
+        <div class="fact"><span class="fk">Proof</span>Nike, Adidas, Red Bull, GoPro, Microsoft, Amtrak, KPMG</div>
+        <div class="fact"><span class="fk">Limitations</span>No public pricing; premium; light on music/SMB</div>
+      </div>
+    </div></details>
+  </div>
+
+  <div class="card tt">
+    <div class="chead"><span class="lbl" style="color:var(--terra-text)">Prestige</span><span class="nm">Huffman Creative</span><span class="url">huffmancreative.com</span>
+      <span class="tags"><span class="tag">LA boutique</span><span class="tag">Speed + value</span><span class="tag">Custom price</span></span></div>
+    <p class="read">Boutique studio selling "scalable cinematic content with speed and efficiency" and stretching a budget further, via a director-per-project model. <strong>The closest peer to ZANE on speed and value</strong>, pitched a tier more premium and agency-facing.</p>
+    <div class="why"><b>Read for ZANE:</b> the direct competitor for the efficiency narrative. ZANE counters with wider format breadth and a proven fast, direct relationship.</div>
+    <details class="tog"><summary><span class="vshow">Show </span>full profile <span class="chip">+</span></summary><div class="togbody">
+      <div class="facts">
+        <div class="fact"><span class="fk">Founded</span>~2016 to 2018 (est.)</div>
+        <div class="fact"><span class="fk">Positioning</span>"Scalable cinematic content, speed and efficiency"</div>
+        <div class="fact"><span class="fk">Hook</span>Speed, efficiency, "takes your money further"</div>
+        <div class="fact"><span class="fk">Audience</span>Brands and creatives; premium</div>
+        <div class="fact"><span class="fk">Services</span>Commercial, branded entertainment, photo, live, music</div>
+        <div class="fact"><span class="fk">Pricing</span>Custom; capabilities deck on request</div>
+        <div class="fact"><span class="fk">Proof</span>Uber Eats, adidas, Estee Lauder, Maybelline, Marriott, Square</div>
+        <div class="fact"><span class="fk">Limitations</span>No public pricing; boutique capacity; premium</div>
+      </div>
+    </div></details>
+  </div>
+
+  <div class="tierhead p2">Tier 2 · Direct-to-brand: full-service, results and value (ZANE's lane)</div>
+
+  <div class="card tl">
+    <div class="chead"><span class="lbl" style="color:var(--canopy-text)">Direct-to-brand</span><span class="nm">Sandwich</span><span class="url">sandwich.co</span>
+      <span class="tags"><span class="tag">LA</span><span class="tag">Tech / product</span><span class="tag">Fixed-fee</span></span></div>
+    <p class="read">"The de facto creative studio for Silicon Valley," making product films that explain tech "the kind people like." <strong>Owns the tech-product-video niche</strong> and competes on category ownership plus craft, not breadth or price.</p>
+    <div class="why"><b>Read for ZANE:</b> overlaps ZANE's corporate and explainer work but far narrower and premium. ZANE's edge is full-format breadth beyond tech.</div>
+    <details class="tog"><summary><span class="vshow">Show </span>full profile <span class="chip">+</span></summary><div class="togbody">
+      <div class="facts">
+        <div class="fact"><span class="fk">Founded</span>2009 (Adam Lisagor)</div>
+        <div class="fact"><span class="fk">Positioning</span>Explains tech products; story-first</div>
+        <div class="fact"><span class="fk">Hook</span>"We know the tech and see your vision"</div>
+        <div class="fact"><span class="fk">Audience</span>Tech and SaaS founders and marketing teams</div>
+        <div class="fact"><span class="fk">Services</span>Product and launch films, commercials, explainer</div>
+        <div class="fact"><span class="fk">Pricing</span>Fixed-fee, packaged, premium</div>
+        <div class="fact"><span class="fk">Proof</span>Square, Slack, Figma, Spotify, Perplexity, Rakuten</div>
+        <div class="fact"><span class="fk">Limitations</span>Narrow to tech; premium; not music, live, or broad CPG</div>
+      </div>
+    </div></details>
+  </div>
+
+  <div class="card tl">
+    <div class="chead"><span class="lbl" style="color:var(--canopy-text)">Direct-to-brand</span><span class="nm">Lemonlight</span><span class="url">lemonlight.com</span>
+      <span class="tags"><span class="tag">LA</span><span class="tag">Transparent pricing</span><span class="tag">Productized</span></span></div>
+    <p class="read">Productized full-service video built on transparent, predetermined packages and a 2-hour response time, with 10,000-plus videos delivered. <strong>The most direct threat to ZANE's positioning</strong>: it claims the accessible, value, one-stop lane with pricing clarity and scale ZANE has not matched.</p>
+    <div class="why"><b>Read for ZANE:</b> the pricing-transparency and speed benchmark. ZANE's answer is bespoke craft and breadth that a package model cannot flex to.</div>
+    <details class="tog"><summary><span class="vshow">Show </span>full profile <span class="chip">+</span></summary><div class="togbody">
+      <div class="facts">
+        <div class="fact"><span class="fk">Founded</span>2014</div>
+        <div class="fact"><span class="fk">Positioning</span>"Democratizing video for brands of all sizes"</div>
+        <div class="fact"><span class="fk">Hook</span>Transparent packages, a-la-carte, public "View Pricing"</div>
+        <div class="fact"><span class="fk">Audience</span>SMB to enterprise; DTC and ecommerce; agencies</div>
+        <div class="fact"><span class="fk">Services</span>Full production, photo, ad and PDP bundles</div>
+        <div class="fact"><span class="fk">Pricing</span>Transparent packages plus a-la-carte, public</div>
+        <div class="fact"><span class="fk">Proof</span>Disney, Amazon, Walmart, Google, Lego, Netflix</div>
+        <div class="fact"><span class="fk">Limitations</span>Productized, not bespoke; consistent house style</div>
+      </div>
+    </div></details>
+  </div>
+
+  <div class="card tl">
+    <div class="chead"><span class="lbl" style="color:var(--canopy-text)">Direct-to-brand</span><span class="nm">Sparkhouse</span><span class="url">thesparkhouse.com</span>
+      <span class="tags"><span class="tag">Orange County</span><span class="tag">Results-led</span><span class="tag">~Transparent</span></span></div>
+    <p class="read">"Strategic Brand Films" with a budget-friendly, marketing-attached, results-first pitch. <strong>The closest positioning analog to ZANE</strong>: SoCal, direct-to-brand, results plus value plus full-service. The difference is Sparkhouse leans harder into the marketing-agency framing.</p>
+    <div class="why"><b>Read for ZANE:</b> a near-mirror competitor. Whoever owns the outcome story (reach and proof) more credibly wins this matchup.</div>
+    <details class="tog"><summary><span class="vshow">Show </span>full profile <span class="chip">+</span></summary><div class="togbody">
+      <div class="facts">
+        <div class="fact"><span class="fk">Founded</span>2009; "20-plus years" claimed</div>
+        <div class="fact"><span class="fk">Positioning</span>"Strategic Brand Films," videos that "work"</div>
+        <div class="fact"><span class="fk">Hook</span>Results, strategy, budget-friendly</div>
+        <div class="fact"><span class="fk">Audience</span>Startups to corporations; DTC and product</div>
+        <div class="fact"><span class="fk">Services</span>Product, brand, animation, social, TV commercial, marketing</div>
+        <div class="fact"><span class="fk">Pricing</span>Mostly custom, transparency emphasized; ~$5K to $100K+</div>
+        <div class="fact"><span class="fk">Proof</span>USAA, NFL, GM, Capital One; 168 Clutch reviews</div>
+        <div class="fact"><span class="fk">Limitations</span>Mid-tier prestige; regional; generalist</div>
+      </div>
+    </div></details>
+  </div>
+
+  <div class="tierhead p3">Tier 3 · Productized / subscription: transparent pricing, scale, the structural shift</div>
+
+  <div class="card tb">
+    <div class="chead"><span class="lbl" style="color:var(--blue-text)">Productized</span><span class="nm">Vidico</span><span class="url">vidico.com</span>
+      <span class="tags"><span class="tag">Global</span><span class="tag">Subscription</span><span class="tag">SaaS explainer</span></span></div>
+    <p class="read">SaaS and tech video run as a "creative engine" on monthly subscription, with transparent pricing and a system that turns one shoot into 40-plus assets. <strong>Owns the productized pricing and always-on model ZANE lacks.</strong></p>
+    <div class="why"><b>Read for ZANE:</b> overlaps ZANE's corporate and SaaS lane. Competes on system, clarity, and compounding assets rather than cinematic breadth.</div>
+    <details class="tog"><summary><span class="vshow">Show </span>full profile <span class="chip">+</span></summary><div class="togbody">
+      <div class="facts">
+        <div class="fact"><span class="fk">Founded</span>~2016</div>
+        <div class="fact"><span class="fk">Positioning</span>SaaS explainer as a subscription "creative engine"</div>
+        <div class="fact"><span class="fk">Hook</span>From $5K/mo, transparent, "10x" asset system</div>
+        <div class="fact"><span class="fk">Audience</span>B2B, SaaS, enterprise marketing teams</div>
+        <div class="fact"><span class="fk">Services</span>Explainer, product demo, brand, corporate; video, design, motion</div>
+        <div class="fact"><span class="fk">Pricing</span>Transparent plus subscription; $5K to $20K+ per video</div>
+        <div class="fact"><span class="fk">Proof</span>Spotify, Square, IBM, DigitalOcean, TikTok; 2,000+ campaigns</div>
+        <div class="fact"><span class="fk">Limitations</span>SaaS focus; explainer-leaning; agency timelines for hero work</div>
+      </div>
+    </div></details>
+  </div>
+
+  <div class="card tb">
+    <div class="chead"><span class="lbl" style="color:var(--blue-text)">Productized</span><span class="nm">Demo Duck</span><span class="url">demoduck.com</span>
+      <span class="tags"><span class="tag">Chicago</span><span class="tag">Explainer / animation</span><span class="tag">~Transparent</span></span></div>
+    <p class="read">Chicago explainer and animation studio that "explains in 2 minutes or less," partnership-first, with a measurable-results origin story. <strong>Competes on animation craft and outcomes</strong>, not breadth, and sits inside ZANE's Chicago market.</p>
+    <div class="why"><b>Read for ZANE:</b> a strong explainer specialist in a shared city. ZANE's live-action range and speed differentiate against a slower, animation-centric process.</div>
+    <details class="tog"><summary><span class="vshow">Show </span>full profile <span class="chip">+</span></summary><div class="togbody">
+      <div class="facts">
+        <div class="fact"><span class="fk">Founded</span>2011 (Andrew Follett)</div>
+        <div class="fact"><span class="fk">Positioning</span>Explain in 2 minutes; "video is ongoing strategy"</div>
+        <div class="fact"><span class="fk">Hook</span>Premium explainer, partnership, measurable results</div>
+        <div class="fact"><span class="fk">Audience</span>Brands of all sizes; tech, finance, nonprofit</div>
+        <div class="fact"><span class="fk">Services</span>Explainer, educational, commercial, testimonial, animation</div>
+        <div class="fact"><span class="fk">Pricing</span>~$20K to $25K per 2D video; $10K to $50K; series packages</div>
+        <div class="fact"><span class="fk">Proof</span>Netflix, Dropbox, Crazy Egg; 300+ clients</div>
+        <div class="fact"><span class="fk">Limitations</span>Explainer and animation centric; slower; Chicago-anchored</div>
+      </div>
+    </div></details>
+  </div>
+
+  <div class="card tb">
+    <div class="chead"><span class="lbl" style="color:var(--blue-text)">Productized</span><span class="nm">Superside</span><span class="url">superside.com</span>
+      <span class="tags"><span class="tag">Global</span><span class="tag">Creative subscription</span><span class="tag">AI-enhanced</span></span></div>
+    <p class="read">Creative-as-a-service subscription where "our creative team becomes part of yours," blending video, design, and AI at enterprise scale. <strong>The structural disruptor</strong>, competing on scale, speed, and relationship rather than cinematic craft.</p>
+    <div class="why"><b>Read for ZANE:</b> signals where the volume end of the market is heading. Not a threat to bespoke brand film, but it reframes buyer expectations around always-on output.</div>
+    <details class="tog"><summary><span class="vshow">Show </span>full profile <span class="chip">+</span></summary><div class="togbody">
+      <div class="facts">
+        <div class="fact"><span class="fk">Founded</span>2015 (as Konsus)</div>
+        <div class="fact"><span class="fk">Positioning</span>"Our creative team becomes part of yours"</div>
+        <div class="fact"><span class="fk">Hook</span>Always-on creative ops: scale, speed, AI</div>
+        <div class="fact"><span class="fk">Audience</span>Mid-market to enterprise marketing teams</div>
+        <div class="fact"><span class="fk">Services</span>Video, motion, design, ad creative, AI creative</div>
+        <div class="fact"><span class="fk">Pricing</span>Custom subscription (enterprise)</div>
+        <div class="fact"><span class="fk">Proof</span>Enterprise client base; scaled, always-on delivery</div>
+        <div class="fact"><span class="fk">Limitations</span>Not a bespoke film house; breadth over cinematic craft</div>
+      </div>
+    </div></details>
+  </div>
+
+
+  <!-- SATURATION MAP -->
+  <div class="secnum">03 / WHAT EVERYONE SAYS</div>
+  <h2 class="sec">The crowded <em>claims</em></h2>
+  <p class="body">These themes appear across most or all ten sites. That is what makes them table stakes: a buyer reading three of these pages cannot tell the shops apart. Longer bar means more crowded.</p>
+  <figure>
+    <div class="figwrap">
+    <svg viewBox="0 0 900 340" role="img" aria-label="Messaging saturation bars, longest bar is most crowded">
+      <!-- rows -->
+      <g class="svgtx" font-size="13" fill="var(--ink)">
+        <text x="0" y="34">Award-winning</text>
+        <text x="0" y="74">Full-service / one roof</text>
+        <text x="0" y="114">Cinematic / high craft</text>
+        <text x="0" y="154">Big-name logo wall</text>
+        <text x="0" y="194">"Drives results"</text>
+        <text x="0" y="234">Budget flexibility</text>
+        <text x="0" y="274">Fast turnaround</text>
+      </g>
+      <!-- bars: x start 250, max width 560 -->
+      <g>
+        <rect x="250" y="22" width="504" height="18" rx="3" fill="var(--barterra)"/><text x="762" y="36" class="svgmono" font-size="11" fill="var(--muted)">HIGH</text>
+        <rect x="250" y="62" width="560" height="18" rx="3" fill="var(--barterra)"/><text x="818" y="76" class="svgmono" font-size="11" fill="var(--muted)">HIGH</text>
+        <rect x="250" y="102" width="470" height="18" rx="3" fill="var(--barterra)"/><text x="728" y="116" class="svgmono" font-size="11" fill="var(--muted)">HIGH</text>
+        <rect x="250" y="142" width="560" height="18" rx="3" fill="var(--barterra)"/><text x="818" y="156" class="svgmono" font-size="11" fill="var(--muted)">HIGH</text>
+        <rect x="250" y="182" width="380" height="18" rx="3" fill="var(--barclay)"/><text x="638" y="196" class="svgmono" font-size="11" fill="var(--muted)">MED-HIGH</text>
+        <rect x="250" y="222" width="280" height="18" rx="3" fill="var(--barclay)"/><text x="538" y="236" class="svgmono" font-size="11" fill="var(--muted)">MED</text>
+        <rect x="250" y="262" width="250" height="18" rx="3" fill="var(--barclay)"/><text x="508" y="276" class="svgmono" font-size="11" fill="var(--muted)">MED</text>
+      </g>
+      <text x="250" y="312" class="svgmono" font-size="11" fill="var(--muted)">Saturation = how many of the ten lead with the claim. Higher = harder to differentiate on.</text>
+    </svg>
+    </div>
+    <figcaption>"Award-winning, full-service, cinematic" plus a logo wall now describe every serious shop. The "results" claim is following the same path: widely asserted, rarely proven past views.</figcaption>
+  </figure>
+
+  <!-- DELIVERY GAP -->
+  <div class="secnum">04 / THE OPEN MIDDLE</div>
+  <h2 class="sec">Four lanes ZANE can <em>own</em></h2>
+  <p class="body">Each lane is a position the field leaves open, cross-referenced against the buyers the targeting work identified. Rated by how many of those buyers it would move. These are grounded in what ZANE already does, not aspiration.</p>
+
+  <div class="card tl">
+    <div class="chead"><span class="nm" style="font-size:17px">Lane 1 · Broadcast craft, direct to the brand</span><span class="tags"><span class="badge b-hi">High opportunity</span></span></div>
+    <p class="read">The prestige houses sit behind an ad agency. ZANE does not.</p>
+    <p class="body" style="margin:6px 0"><strong>Why it matters:</strong> Caviar produces through agencies like Saatchi, and division7 and Huffman represent directors for agency briefs. Their craft comes with a representation layer, a markup, and an agency timeline. ZANE brings comparable craft, from Marvel and Amazon to UFC and major-label work, directly to the brand, founder-led.</p>
+    <div class="why"><b>Evidence:</b> in-house brand teams increasingly commission production directly to skip the agency markup and the wait. Agency-grade craft without the agency is a lane the prestige tier structurally cannot occupy. This is the lane for the in-house brand leader.</div>
+  </div>
+
+  <div class="card tl">
+    <div class="chead"><span class="nm" style="font-size:17px">Lane 2 · One shoot, a full campaign library</span><span class="tags"><span class="badge b-hi">High opportunity</span></span></div>
+    <p class="read">The prestige tier delivers one hero. The volume tier delivers many generic assets. Neither delivers craft at campaign scale.</p>
+    <p class="body" style="margin:6px 0"><strong>Why it matters:</strong> modern brands need horizontal, vertical, square, cutdowns, and alternate hooks for every channel, all on brand, from a single production. ZANE's model is built for exactly this.</p>
+    <div class="why"><b>Evidence:</b> a 50-asset Tillys campaign and a 21-deliverable Valyou shoot, reported at 550% return, show broadcast craft delivered as a campaign system rather than a single film. The specialists do volume or craft, rarely both. This lane serves both the brand leader and the growth buyer.</div>
+  </div>
+
+  <div class="card tl">
+    <div class="chead"><span class="nm" style="font-size:17px">Lane 3 · Premium craft built to perform</span><span class="tags"><span class="badge b-hi">High opportunity</span></span></div>
+    <p class="read">The roster shops optimize for the award and the hero film. Performance creative is an afterthought.</p>
+    <p class="body" style="margin:6px 0"><strong>Why it matters:</strong> ZANE already produces the paid-social variations, alternate hooks, vertical edits, and platform-native cutdowns that growth teams actually run, at premium quality. That speaks to the demand-generation buyer the prestige tier does not.</p>
+    <div class="why"><b>Evidence:</b> ZANE's own commercial offering lists paid-ad variations, A/B hooks, and platform-specific edits. This is craft built to be tested and run. Running and measuring that media is a separate job, and the open frontier this room turns to next.</div>
+  </div>
+
+  <div class="card tl">
+    <div class="chead"><span class="nm" style="font-size:17px">Lane 4 · One partner across every format and category</span><span class="tags"><span class="badge b-md">Med-High</span></span></div>
+    <p class="read">The market is fragmenting into narrow specialists. ZANE spans the whole slate.</p>
+    <p class="body" style="margin:6px 0"><strong>Why it matters:</strong> Sandwich owns tech product, Vidico owns SaaS explainer, the medical-animation shops own regulated science, and the prestige houses own entertainment craft. A brand that wants one trusted partner for commercials, social, corporate, music, live, and post, across consumer, tech, and healthcare-brand work, otherwise has to stitch several specialists together.</p>
+    <div class="why"><b>Evidence:</b> ZANE's range, from a Marvel spot to a Novo Nordisk healthcare commercial to forty social cutdowns, is unusual in one shop. Breadth at broadcast quality is a defensible position as the field narrows into specialists.</div>
+  </div>
+
+  <!-- OPPORTUNITY MATRIX -->
+  <figure>
+    <div class="figwrap">
+    <svg viewBox="0 0 900 470" role="img" aria-label="Opportunity matrix of the four lanes, buyer impact versus how contested each lane is">
+      <line x1="90" y1="30" x2="90" y2="400" stroke="var(--line)" stroke-width="1.5"/>
+      <line x1="90" y1="400" x2="850" y2="400" stroke="var(--line)" stroke-width="1.5"/>
+      <line x1="470" y1="30" x2="470" y2="400" stroke="var(--line)" stroke-width="1" stroke-dasharray="4 5" opacity=".6"/>
+      <line x1="90" y1="215" x2="850" y2="215" stroke="var(--line)" stroke-width="1" stroke-dasharray="4 5" opacity=".6"/>
+      <text x="470" y="436" text-anchor="middle" class="svgmono" font-size="12" fill="var(--muted)">UNCONTESTED  &#8594;  ALREADY BEING CLAIMED</text>
+      <text x="70" y="215" text-anchor="middle" class="svgmono" font-size="12" fill="var(--muted)" transform="rotate(-90 70 215)">LOWER IMPACT   &#8597;   MOVES MORE BUYERS</text>
+      <text x="300" y="52" text-anchor="middle" class="svgmono" font-size="11" fill="var(--barcanopy)" opacity=".8">PRIME LANE</text>
+      <g>
+        <circle cx="215" cy="90" r="9" fill="var(--barcanopy)"/><text x="230" y="87" class="svgtx" font-size="13" font-weight="700" fill="var(--ink)">Broadcast craft, direct</text><text x="230" y="103" class="svgmono" font-size="10.5" fill="var(--muted)">high impact · agency tier can't follow</text>
+        <circle cx="290" cy="150" r="9" fill="var(--barcanopy)"/><text x="305" y="147" class="svgtx" font-size="13" font-weight="700" fill="var(--ink)">One shoot, full library</text><text x="305" y="163" class="svgmono" font-size="10.5" fill="var(--muted)">high impact · lightly held</text>
+        <circle cx="340" cy="120" r="9" fill="var(--barcanopy)"/><text x="355" y="117" class="svgtx" font-size="13" font-weight="700" fill="var(--ink)">Craft built to perform</text><text x="355" y="133" class="svgmono" font-size="10.5" fill="var(--muted)">high impact · roster tier ignores it</text>
+        <circle cx="380" cy="250" r="8" fill="var(--barblue)"/><text x="395" y="247" class="svgtx" font-size="12.5" fill="var(--ink)">One partner, every category</text><text x="395" y="263" class="svgmono" font-size="10.5" fill="var(--muted)">med-high · the field is narrowing</text>
+      </g>
+    </svg>
+    </div>
+    <figcaption>All four lanes sit left of center: genuinely open, because holding them requires either giving up the agency-gated model or rebuilding as a premium shop. Broadcast craft delivered direct, at scale, and built to perform is the tightest cluster, and the position to lead with.</figcaption>
+  </figure>
+
+  <div class="secnum">05 / THE ONE FRONTIER</div>
+  <h2 class="sec">Made. Delivered. <em>Then what?</em></h2>
+  <p class="body">One thing sits beyond all four lanes, and it is the one thing none of these ten do, ZANE included. Trace the job every video partner actually performs: they make the work, they hand it over, and the relationship ends. What happens next, getting the work in front of the right buyers and showing what it produced, is left to the brand.</p>
+  <figure>
+    <div class="figwrap">
+    <svg viewBox="0 0 900 250" role="img" aria-label="Process from make to prove showing the whole category including ZANE stops after delivery">
+      <g>
+        <rect x="20" y="70" width="150" height="70" rx="10" fill="none" stroke="var(--barterra)" stroke-width="2"/>
+        <text x="95" y="100" text-anchor="middle" class="svgtx" font-size="14" font-weight="700" fill="var(--ink)">Make</text>
+        <text x="95" y="120" text-anchor="middle" class="svgmono" font-size="10.5" fill="var(--muted)">shoot + edit</text>
+        <rect x="200" y="70" width="150" height="70" rx="10" fill="none" stroke="var(--barterra)" stroke-width="2"/>
+        <text x="275" y="100" text-anchor="middle" class="svgtx" font-size="14" font-weight="700" fill="var(--ink)">Deliver</text>
+        <text x="275" y="120" text-anchor="middle" class="svgmono" font-size="10.5" fill="var(--muted)">hand off files</text>
+      </g>
+      <path d="M172 105 L198 105" stroke="var(--muted)" stroke-width="2" marker-end="url(#ah)"/>
+      <path d="M352 105 L392 105" stroke="var(--muted)" stroke-width="2" stroke-dasharray="5 4"/>
+      <line x1="400" y1="30" x2="400" y2="180" stroke="var(--barpink)" stroke-width="2.5" stroke-dasharray="6 5"/>
+      <text x="400" y="24" text-anchor="middle" class="svgmono" font-size="11" font-weight="700" fill="var(--pink-text)">EVERYONE STOPS HERE · ZANE TOO</text>
+      <g>
+        <rect x="430" y="70" width="200" height="70" rx="10" fill="none" stroke="var(--barcanopy)" stroke-width="2" stroke-dasharray="4 4"/>
+        <text x="530" y="100" text-anchor="middle" class="svgtx" font-size="14" font-weight="700" fill="var(--canopy-text)">Place</text>
+        <text x="530" y="120" text-anchor="middle" class="svgmono" font-size="10.5" fill="var(--muted)">reach the right buyers</text>
+        <rect x="660" y="70" width="210" height="70" rx="10" fill="none" stroke="var(--barcanopy)" stroke-width="2" stroke-dasharray="4 4"/>
+        <text x="765" y="100" text-anchor="middle" class="svgtx" font-size="14" font-weight="700" fill="var(--canopy-text)">Prove</text>
+        <text x="765" y="120" text-anchor="middle" class="svgmono" font-size="10.5" fill="var(--muted)">show what it produced</text>
+      </g>
+      <defs><marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="var(--muted)"/></marker></defs>
+    </svg>
+    </div>
+    <figcaption>This is not a lane anyone owns today, ZANE included. It is the frontier past production, and it is where the rest of this room goes: the audience to reach, the channel motion to reach them, and the way to measure it. Holding the production middle is ZANE's position now. Reaching this frontier is the growth direction, and it needs a system no video shop runs on its own.</figcaption>
+  </figure>
+
+  <!-- POSITIONING DIRECTION -->
+  <div class="secnum">06 / THE LANE TO OWN</div>
+  <h2 class="sec">Positioning direction for <em>ZANE</em></h2>
+  <p class="body">Built from the white space, not from anyone's existing messaging. The UVP names the outcome the whole market ignores.</p>
+
+  <div class="dark-panel pin">
+    <div class="plbl">Unique value proposition</div>
+    <p class="ptext">The broadcast-grade production partner brands work with directly: <span class="em">premium video across every format and category, delivered as a full campaign in weeks,</span> not a single hero asset in months, and without the agency layer.</p>
+  </div>
+
+  <div class="grid2" style="margin-top:18px">
+    <div class="card">
+      <h3 class="sub" style="margin-top:6px">Now table stakes</h3>
+      <p class="body" style="font-size:13px;margin:4px 0 8px">These themes are shared by the whole market, so leading with them makes it hard for a buyer to tell anyone apart. They stay in the mix as reassurance; they should not carry the headline.</p>
+      <ul class="clean">
+        <li class="t"><strong>"Award-winning full-service"</strong> as the lead line</li>
+        <li class="t"><strong>"Cinematic storytelling"</strong> as the primary claim, which is the prestige tier's home turf</li>
+        <li class="t">A <strong>logo wall</strong> as the main proof, since every competitor has one</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 class="sub" style="margin-top:6px">True and ownable</h3>
+      <p class="body" style="font-size:13px;margin:4px 0 8px">What is already true for ZANE and hard for the field to copy. Lead here.</p>
+      <ul class="clean">
+        <li><strong>Broadcast craft, direct to brand:</strong> agency-grade work from Marvel to major labels, without the representation layer or the markup</li>
+        <li><strong>One shoot, a full campaign library:</strong> fifty-plus assets from a single production, craft at campaign scale</li>
+        <li><strong>Range across the whole slate:</strong> commercial, social, corporate, music, live, and post, wider than the format specialists</li>
+        <li><strong>Founder-led speed:</strong> weeks not months, and a direct line to the director</li>
+        <li><strong>The growth direction, with a system:</strong> reaching the right buyers and proving impact, the frontier the whole market leaves open, is where ZANE grows next, not a claim to make today</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TARGETING -->
+  <div class="secnum">07 / WHO TO GO AFTER</div>
+  <h2 class="sec">Targeting <em>priorities</em></h2>
+  <div class="grid3">
+    <div class="card tl">
+      <h3 class="sub" style="margin-top:4px;font-size:15px">Primary</h3>
+      <ul class="clean">
+        <li>Growth, brand, and content marketing leaders at mid-market brands and DTC, CPG, and product companies commissioning ongoing, performance-oriented video</li>
+        <li>Agency producers who subcontract production and value speed and reliability</li>
+      </ul>
+    </div>
+    <div class="card tb">
+      <h3 class="sub" style="margin-top:4px;font-size:15px">Secondary</h3>
+      <ul class="clean">
+        <li class="b">SaaS and tech marketing needing corporate, explainer, and product video, where ZANE has proof but meets specialists</li>
+        <li class="b">Artists, labels, and networks, the origin lane, still active but lower in deal value</li>
+      </ul>
+    </div>
+    <div class="card tt">
+      <h3 class="sub" style="margin-top:4px;font-size:15px">Lower fit</h3>
+      <ul class="clean">
+        <li class="t">Awards-chasing national campaigns routed through holding-company agencies (Caviar, division7 territory)</li>
+        <li class="t">Commodity high-volume explainer at rock-bottom price, where margin is thin</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- HOOKS -->
+  <div class="secnum">08 / HOW TO SAY IT</div>
+  <h2 class="sec">Hooks by <em>buying stage</em></h2>
+  <div class="grid3">
+    <div class="card tl">
+      <h3 class="sub" style="margin-top:4px;font-size:15px">Unaware</h3>
+      <div class="hook">"Your video's real job starts the moment it's delivered."</div>
+      <div class="hook">"A film nobody sees is a cost, not an asset."</div>
+      <div class="hook">"Marketing measures video in views. The board measures it in pipeline."</div>
+    </div>
+    <div class="card tb">
+      <h3 class="sub" style="margin-top:4px;font-size:15px">Aware</h3>
+      <div class="hook">"Made, placed, and measured by one team."</div>
+      <div class="hook">"Premium production without the agency layer or the three-month wait."</div>
+      <div class="hook">"Every format from one partner, built to reach the right buyers."</div>
+    </div>
+    <div class="card tt">
+      <h3 class="sub" style="margin-top:4px;font-size:15px">Engaged</h3>
+      <div class="hook">"Get a free quote and a plan for who should see it."</div>
+      <div class="hook">"Your next video, with a distribution and measurement plan attached."</div>
+      <div class="hook">Low-pressure close: the plan is yours to keep either way.</div>
+    </div>
+  </div>
+
+  <!-- TAKEAWAYS -->
+  <div class="secnum">09 / THE SHORT VERSION</div>
+  <h2 class="sec">Key <em>takeaways</em></h2>
+  <div class="card">
+    <ul class="clean">
+      <li>The market is a barbell: agency-gated prestige craft on one end, fast-but-generic volume on the other. The middle is thin.</li>
+      <li>ZANE's ownable lane is that middle: <strong>broadcast craft, delivered directly to the brand, as a full campaign, in weeks, across every format and category.</strong></li>
+      <li>The prestige tier cannot follow ZANE into direct-to-brand and campaign-scale without unwinding the agency-gated, single-hero model that defines it.</li>
+      <li>The volume tier cannot follow ZANE up in craft without rebuilding as a premium shop. The two ends are structurally stuck.</li>
+      <li>The near-term pressure is real: the productized players (Lemonlight, Vidico) have claimed transparent pricing and always-on in the value lane, so the message has to earn the premium.</li>
+      <li>The one frontier none of them hold, ZANE included, is <strong>reach and proof</strong>: getting the work in front of the right buyers and showing what it produced. That is the growth direction, and it needs a system no video shop runs alone.</li>
+      <li>The single move: stop leading with "award-winning full-service," which every competitor says, and lead with the middle ZANE actually owns, then grow into the frontier the market ignores.</li>
+    </ul>
+  </div>
+</section>
+<section class="view" id="targeting">
+
+
+  <!-- HERO -->
+  <div class="dark-panel pin" style="border-radius:16px;padding:34px 32px;margin-top:26px">
+    <div class="kicker" style="color:var(--jet-pink)">Audience Targeting Worksheet · LinkedIn · Signals · Search</div>
+    <h1 class="big">Reach the buyers<br>who feel the <span class="b">gap.</span><br>Start warm.<br>Earn <span class="b">cold.</span></h1>
+    <p class="lede" style="color:rgba(216,212,200,.9);max-width:800px">The white space named the middle ZANE can own: broadcast craft, delivered direct, at campaign scale. The buyers who value that most are the marketing and creative leaders who commission video and already answer for results. This maps who to reach, in what order, and why, starting with the audience ZANE already owns.</p>
+    <div class="metastrip" style="border-top-color:rgba(255,255,255,.15)">
+      <span>Warm pools · <b>4</b></span>
+      <span>Cold personas · <b>3</b></span>
+      <span>Signal sources · <b>8</b></span>
+      <span>Keyword clusters · <b>13</b></span>
+    </div>
+  </div>
+
+  <!-- EFFICIENCY LADDER -->
+  <div class="secnum">01 / THE LADDER</div>
+  <h2 class="sec">Spend in <em>order of efficiency</em></h2>
+  <p class="body">Every audience does not cost the same to convert. Impactable's ladder, drawn from more than 200 B2B accounts, runs cheapest to most expensive. Warm retargeting converts for a fraction of cold, so budget climbs the ladder only after each rung proves out. Cold prospecting feeds the warm pools; it is not the primary conversion driver.</p>
+  <figure>
+    <div class="figwrap">
+    <svg viewBox="0 0 900 340" role="img" aria-label="Audience efficiency ladder from warm retargeting to cold, with cost-per-lead bands">
+      <g class="svgtx" font-size="13" fill="var(--ink)">
+        <text x="0" y="42">Warm 1P · pricing + demo visitors</text>
+        <text x="0" y="118">Warm 1P · engagers + site visitors</text>
+        <text x="0" y="194">Intent + fit ABM · signal-scored</text>
+        <text x="0" y="270">Very cold · title + seniority only</text>
+      </g>
+      <!-- bars start x=360, scale: $ per 6px; max ~600 -> width -->
+      <rect x="360" y="26" width="120" height="26" rx="4" fill="var(--barcanopy)"/><text x="490" y="44" class="svgmono" font-size="12" fill="var(--muted)">$75 to $150 CPL</text>
+      <rect x="360" y="102" width="210" height="26" rx="4" fill="var(--barmoss)"/><text x="580" y="120" class="svgmono" font-size="12" fill="var(--muted)">$120 to $250</text>
+      <rect x="360" y="178" width="330" height="26" rx="4" fill="var(--barblue)"/><text x="700" y="196" class="svgmono" font-size="12" fill="var(--muted)">$250 to $400</text>
+      <rect x="360" y="254" width="480" height="26" rx="4" fill="var(--barterra)"/><text x="360" y="304" class="svgmono" font-size="12" fill="var(--muted)">$300 to $600+  ·  longest path to revenue</text>
+      <text x="360" y="20" class="svgmono" font-size="10.5" fill="var(--muted)">cheaper to convert</text>
+    </svg>
+    </div>
+    <figcaption>Indicative cost-per-lead bands from Impactable's B2B dataset, not a ZANE forecast. Video-services CPLs will differ; the point is the order, not the exact number. Warm converts cheapest, so it goes first.</figcaption>
+  </figure>
+
+  <!-- SECTION 1: LINKEDIN ARCHITECTURE -->
+  <div class="secnum">02 / LINKEDIN ARCHITECTURE</div>
+  <h2 class="sec">The three <em>tiers</em></h2>
+  <p class="body">LinkedIn is the one platform that filters an audience by seniority, function, industry, and company at the same time. That is why it anchors the plan. Every pool below gets filtered to the ICP (ideal customer profile) before a dollar is spent, and Audience Expansion stays off, always.</p>
+
+  <div class="tierlabel tw"><span class="tnum">1</span> Warm retargeting · highest priority</div>
+  <p class="tagl">The audience ZANE already owns. The founder's following and the client history are a warm pool most production companies do not have. This is where month one lives.</p>
+
+  <div class="ladder">
+    <div class="card tl">
+      <div class="chead"><span class="nm" style="font-size:16px">Founder audience</span><span class="tags"><span class="pill p-hi">Warmest</span></span></div>
+      <p class="read">Everyone engaging with Director ZANE's content, plus company page followers and visitors.</p>
+      <div class="ftag"><b>Filter:</b> Marketing, Arts &amp; Design, Media functions</div><div class="ftag">Seniority Manager to CXO</div>
+      <div class="why"><b>Why first:</b> the founder brand is a live demand asset. This pool is warm, sizable, and unique to ZANE. Retarget it with proof and offers.</div>
+    </div>
+    <div class="card tl">
+      <div class="chead"><span class="nm" style="font-size:16px">Website visitors</span><span class="tags"><span class="pill p-hi">Warm</span></span></div>
+      <p class="read">Site visitors captured by the LinkedIn Insight Tag, filtered to marketing and creative roles.</p>
+      <div class="ftag"><b>Filter:</b> ICP seniority + function</div><div class="ftag">90-day window</div>
+      <div class="flagbar"><b>To open this pool</b> · install and verify the LinkedIn Insight Tag on the site. Confirmed in week one, then this pool starts filling.</div>
+    </div>
+    <div class="card tl">
+      <div class="chead"><span class="nm" style="font-size:16px">Video viewers</span><span class="tags"><span class="pill p-hi">Warm</span></span></div>
+      <p class="read">People who watched 25 percent or more of ZANE's video content on LinkedIn.</p>
+      <div class="ftag"><b>Filter:</b> 25% and 50% view tiers</div><div class="ftag">ICP layer</div>
+      <div class="why"><b>Why it fits ZANE:</b> the content is already video, so video-view retargeting is stronger here than for almost any other business. A viewer has seen the work.</div>
+    </div>
+    <div class="card tl">
+      <div class="chead"><span class="nm" style="font-size:16px">Clients + inbound leads</span><span class="tags"><span class="pill p-hi">Warm 1P</span></span></div>
+      <p class="read">Past clients and inbound or referral contacts, uploaded as a Matched Audience.</p>
+      <div class="ftag"><b>Source:</b> CRM / contact export</div><div class="ftag">Suppress active customers</div>
+      <div class="flagbar"><b>Size unknown</b> · confirm the exportable list count. Split into repeat-business and referral segments once sized.</div>
+    </div>
+  </div>
+
+  <div class="calloutbox">
+    <h4>ICP <em>filter layer</em> on every warm pool</h4>
+    <p class="body" style="margin:2px 0"><b style="color:var(--ink)">Seniority:</b> Manager, Director, VP, CXO, Owner. <b style="color:var(--ink)">Function:</b> Marketing, Arts &amp; Design, Media &amp; Communications. <b style="color:var(--ink)">Exclude:</b> current customers, ZANE's own team, other production companies, careers and login page visitors, entry and student profiles. No platform outside LinkedIn can filter a warm pool this precisely.</p>
+  </div>
+
+  <div class="tierlabel ta"><span class="tnum">2</span> ABM (account-based marketing) target accounts</div>
+  <p class="tagl">Named brands and agencies showing they are actively investing in video. The account list is built from the signals in the next section, then person-filtered.</p>
+
+  <div class="grid2">
+    <div class="card tb">
+      <h3 class="sub" style="margin-top:4px;font-size:15px">The account lists</h3>
+      <ul class="clean">
+        <li class="b"><strong>Primary:</strong> mid-market consumer, DTC, and CPG brands, 50 to 1,000 employees, running video ads or hiring content roles</li>
+        <li class="b"><strong>Secondary:</strong> tech and SaaS companies needing product, explainer, and corporate video</li>
+        <li class="b"><strong>Secondary:</strong> creative and advertising agencies that subcontract production overflow</li>
+      </ul>
+      <div class="ftag" style="margin-top:8px"><b>Sources:</b> Sales Navigator</div><div class="ftag">Clay scored list</div><div class="ftag">DemandSense</div><div class="ftag">Past-pitch list</div>
+    </div>
+    <div class="card tb">
+      <h3 class="sub" style="margin-top:4px;font-size:15px">Person layer on the list</h3>
+      <table class="ftable">
+        <tr><td>Function</td><td>Marketing, Arts &amp; Design, Media &amp; Communications</td></tr>
+        <tr><td>Seniority</td><td>Manager, Director, VP, CXO, Owner</td></tr>
+        <tr><td>Title keywords</td><td>brand, content, creative, social, video, growth, demand, producer</td></tr>
+        <tr><td>Retargeting</td><td>ABM accounts that visit the site get a dedicated segment, not the generic pool</td></tr>
+      </table>
+      <div class="why" style="margin-top:8px"><b>The LinkedIn edge:</b> the same account list works cold and as a filtered retargeting segment. Warm accounts get focused budget instead of getting lost in a generic pool.</div>
+    </div>
+  </div>
+
+
+  <div class="tierlabel tc"><span class="tnum">3</span> Selective cold audiences · run one at a time</div>
+  <p class="tagl">Cold does not convert cheaply; it manufactures a warm pool. Three personas, ranked. Each ties back to a white space gap, and full filters are shown so the build is unambiguous.</p>
+
+  <div class="card tt">
+    <div class="chead"><span class="nm" style="font-size:17px">Persona A · Brand &amp; Content Marketing Leaders</span><span class="tags"><span class="pill p-hi">Priority 1</span></span></div>
+    <p class="read">The core buyer: the person at a mid-market consumer brand who owns the video budget and feels the distribution and measurement gap most.</p>
+    <table class="ftable">
+      <tr><td>Job title keywords</td><td>Head of Content, Brand Marketing, Content Marketing, Head of Social, Creative Director, VP Marketing</td></tr>
+      <tr><td>Seniority</td><td>Manager, Director, VP, CXO</td></tr>
+      <tr><td>Function</td><td>Marketing, Arts &amp; Design, Media &amp; Communications</td></tr>
+      <tr><td>Industry</td><td>Consumer Goods, Retail, Apparel &amp; Fashion, Food &amp; Beverage, Health &amp; Wellness, DTC / ecommerce</td></tr>
+      <tr><td>Company size</td><td>51 to 1,000 employees</td></tr>
+      <tr><td>Geography</td><td>United States, weighted to LA, NYC, Chicago metros</td></tr>
+      <tr><td>Exclusions</td><td>Current customers, production companies, agencies, entry and student, ZANE team</td></tr>
+      <tr class="est"><td>Estimated size</td><td>Large at national scale, well above the 45K to 50K efficient floor. Confirm exact count at build.</td></tr>
+      <tr><td class="wide">Why this persona</td><td>They commission ongoing brand, social, and commercial video and are measured on outcomes, so "premium creative built to perform" lands directly.</td></tr>
+    </table>
+  </div>
+
+  <div class="card tt">
+    <div class="chead"><span class="nm" style="font-size:17px">Persona B · Growth &amp; Demand Gen Leaders</span><span class="tags"><span class="pill p-md">Priority 2</span></span></div>
+    <p class="read">Marketers at tech and DTC companies who already think in pipeline. The measurement white space resonates hardest here.</p>
+    <table class="ftable">
+      <tr><td>Job title keywords</td><td>Demand Generation, Growth Marketing, Performance Marketing, Head of Marketing, VP Marketing</td></tr>
+      <tr><td>Seniority</td><td>Manager, Director, VP, CXO</td></tr>
+      <tr><td>Function</td><td>Marketing</td></tr>
+      <tr><td>Industry</td><td>Software, Technology, Information &amp; Internet, Financial Services, DTC / ecommerce</td></tr>
+      <tr><td>Company size</td><td>51 to 1,000 employees</td></tr>
+      <tr><td>Geography</td><td>United States</td></tr>
+      <tr><td>Exclusions</td><td>Current customers, agencies, production companies, entry and student, ZANE team</td></tr>
+      <tr class="est"><td>Estimated size</td><td>Moderate to large. Confirm at build; tighten by industry if it runs broad.</td></tr>
+      <tr><td class="wide">Why this persona</td><td>They buy product, explainer, and performance video and speak the language of influenced pipeline, the exact measurement gap no competitor fills.</td></tr>
+    </table>
+  </div>
+
+  <div class="card tt">
+    <div class="chead"><span class="nm" style="font-size:17px">Persona C · Agency Producers &amp; Creative Directors</span><span class="tags"><span class="pill p-md">Priority 3</span></span></div>
+    <p class="read">The subcontract lane. Agencies that need reliable, fast production capacity for overflow and specialized formats.</p>
+    <table class="ftable">
+      <tr><td>Job title keywords</td><td>Executive Producer, Head of Production, Producer, Creative Director, Content Director</td></tr>
+      <tr><td>Seniority</td><td>Manager, Director, VP, Owner</td></tr>
+      <tr><td>Function</td><td>Arts &amp; Design, Media &amp; Communications, Marketing</td></tr>
+      <tr><td>Industry</td><td>Marketing &amp; Advertising, Design, Media Production</td></tr>
+      <tr><td>Company size</td><td>11 to 500 employees</td></tr>
+      <tr><td>Geography</td><td>United States, weighted to LA, NYC, Chicago</td></tr>
+      <tr><td>Exclusions</td><td>Direct-competitor production companies, current partners, entry and student</td></tr>
+      <tr class="est"><td>Estimated size</td><td>Smaller, specialized pool. If it builds under ~25K, run it inside the ABM structure rather than broadening filters.</td></tr>
+      <tr><td class="wide">Why this persona</td><td>Agencies value speed and reliability over a pitch, and a specialized buyer in a thin category does not owe us a cold audience. ABM fits it better if thin.</td></tr>
+    </table>
+  </div>
+
+  <div class="grid2">
+    <div class="calloutbox" style="border-left-color:var(--canopy)">
+      <h4>Build <em>defaults</em></h4>
+      <ul class="clean" style="margin:2px 0">
+        <li>Audience Expansion OFF, always</li>
+        <li class="b">LinkedIn Audience Network OFF by default</li>
+        <li>Ideal cold audience near 150K. Under 10K stalls, over 500K dilutes</li>
+        <li class="t">Suppress customers, ZANE team, and competitors on every campaign</li>
+      </ul>
+    </div>
+    <div class="calloutbox" style="border-left-color:var(--clay)">
+      <h4>Budget <em>shape</em></h4>
+      <p class="body" style="margin:2px 0;font-size:13px">Once the warm pools are live, target a warm-start split: <b style="color:var(--ink)">60% warm, 25% ABM, 15% cold test</b>. Cold earns more budget only after the warm and ABM rungs prove efficient. Under $3,000 to $5,000 per month: one channel, one cold audience, do not split.</p>
+    </div>
+  </div>
+
+  <div class="flagbar"><b>Confirm before finalizing</b> · monthly ad budget is not yet set, and current paid activity has not been verified against the LinkedIn and Meta ad libraries. Both are week-one checks. Until the Insight Tag and client-list upload are live, month one leans on founder-audience retargeting plus ABM plus a single cold test.</div>
+
+  <!-- SECTION 2: SIGNALS -->
+  <div class="secnum">03 / THIRD-PARTY SIGNALS</div>
+  <h2 class="sec">Signals that say <em>"buying video now"</em></h2>
+  <p class="body">LinkedIn native filters find the right roles. Third-party signals find the right timing. These eight tell you which fit accounts are actively investing in video right now, so the ABM list targets accounts leaning in rather than a static industry list.</p>
+
+  <div class="grid2">
+    <div class="card tb"><div class="chead"><span class="nm" style="font-size:15px">Hiring a video role</span></div>
+      <p class="body" style="font-size:13px;margin:4px 0"><strong>Indicates</strong> active video investment and budget. <strong>Why it matters:</strong> a brand staffing content and video is scaling output and needs production capacity for overflow and specialized formats.</p>
+      <div class="ftag">Source: LinkedIn Jobs, Clay</div></div>
+    <div class="card tb"><div class="chead"><span class="nm" style="font-size:15px">Running video ads</span></div>
+      <p class="body" style="font-size:13px;margin:4px 0"><strong>Indicates</strong> a live, recurring need for fresh creative. <strong>Why it matters:</strong> creative fatigue means brands running video ads always need the next batch produced.</p>
+      <div class="ftag">Source: Meta &amp; LinkedIn Ad Library, YouTube</div></div>
+    <div class="card tb"><div class="chead"><span class="nm" style="font-size:15px">Video-forward tech stack</span></div>
+      <p class="body" style="font-size:13px;margin:4px 0"><strong>Indicates</strong> a video-first organization. <strong>Why it matters:</strong> a Wistia, Vimeo, or Brightcove footprint, or a heavy DTC stack, signals ongoing video demand baked into how they operate.</p>
+      <div class="ftag">Source: BuiltWith, Clay technographics</div></div>
+    <div class="card tb"><div class="chead"><span class="nm" style="font-size:15px">Recent funding</span></div>
+      <p class="body" style="font-size:13px;margin:4px 0"><strong>Indicates</strong> buying capacity and urgency. <strong>Why it matters:</strong> post-raise brands invest in brand building and launch content on a deadline, a concentrated burst of production need.</p>
+      <div class="ftag">Source: Crunchbase, funding feeds</div></div>
+    <div class="card tb"><div class="chead"><span class="nm" style="font-size:15px">New marketing leader</span></div>
+      <p class="body" style="font-size:13px;margin:4px 0"><strong>Indicates</strong> a vendor-selection window. <strong>Why it matters:</strong> a new CMO or VP Marketing re-evaluates creative and production partners in their first 90 days.</p>
+      <div class="ftag">Source: LinkedIn, Clay job-change signals</div></div>
+    <div class="card tb"><div class="chead"><span class="nm" style="font-size:15px">Launch or rebrand</span></div>
+      <p class="body" style="font-size:13px;margin:4px 0"><strong>Indicates</strong> a concentrated video need. <strong>Why it matters:</strong> new product lines, rebrands, and campaigns require a burst of production against a fixed date.</p>
+      <div class="ftag">Source: press monitoring, news feeds</div></div>
+    <div class="card tb"><div class="chead"><span class="nm" style="font-size:15px">Intent surge</span></div>
+      <p class="body" style="font-size:13px;margin:4px 0"><strong>Indicates</strong> in-market research. <strong>Why it matters:</strong> topic surges on video production, video marketing agency, explainer, and brand video mean the account is actively evaluating.</p>
+      <div class="ftag">Source: Bombora, 6sense, G2 intent</div></div>
+    <div class="card tb"><div class="chead"><span class="nm" style="font-size:15px">Event activity</span></div>
+      <p class="body" style="font-size:13px;margin:4px 0"><strong>Indicates</strong> event, product, and social video need. <strong>Why it matters:</strong> brands exhibiting, sponsoring, or launching at events need a burst of video with hard deadlines.</p>
+      <div class="ftag">Source: exhibitor lists, sponsorships</div></div>
+  </div>
+
+  <figure>
+    <div class="figwrap">
+    <svg viewBox="0 0 900 260" role="img" aria-label="Clay enrichment workflow combining signals into a scored list uploaded to LinkedIn">
+      <g>
+        <rect x="10" y="40" width="150" height="52" rx="8" fill="none" stroke="var(--barclay)" stroke-width="1.6"/><text x="85" y="63" text-anchor="middle" class="svgtx" font-size="12" fill="var(--ink)">Hiring signal</text><text x="85" y="79" text-anchor="middle" class="svgmono" font-size="10" fill="var(--muted)">video roles</text>
+        <rect x="10" y="104" width="150" height="52" rx="8" fill="none" stroke="var(--barclay)" stroke-width="1.6"/><text x="85" y="127" text-anchor="middle" class="svgtx" font-size="12" fill="var(--ink)">Running ads</text><text x="85" y="143" text-anchor="middle" class="svgmono" font-size="10" fill="var(--muted)">fresh creative</text>
+        <rect x="10" y="168" width="150" height="52" rx="8" fill="none" stroke="var(--barclay)" stroke-width="1.6"/><text x="85" y="191" text-anchor="middle" class="svgtx" font-size="12" fill="var(--ink)">Funding / new CMO</text><text x="85" y="207" text-anchor="middle" class="svgmono" font-size="10" fill="var(--muted)">budget + window</text>
+      </g>
+      <path d="M160 66 C 230 66, 250 120, 318 128" stroke="var(--muted)" stroke-width="1.5" fill="none"/>
+      <path d="M160 130 L318 130" stroke="var(--muted)" stroke-width="1.5"/>
+      <path d="M160 194 C 230 194, 250 140, 318 132" stroke="var(--muted)" stroke-width="1.5" fill="none"/>
+      <rect x="320" y="96" width="190" height="68" rx="10" fill="none" stroke="var(--barpink)" stroke-width="2"/><text x="415" y="124" text-anchor="middle" class="svgtx" font-size="13" font-weight="700" fill="var(--ink)">Clay</text><text x="415" y="142" text-anchor="middle" class="svgmono" font-size="10.5" fill="var(--muted)">scored account list</text>
+      <path d="M510 130 L556 130" stroke="var(--barcanopy)" stroke-width="2" marker-end="url(#a2)"/>
+      <rect x="560" y="96" width="200" height="68" rx="10" fill="none" stroke="var(--barcanopy)" stroke-width="2"/><text x="660" y="124" text-anchor="middle" class="svgtx" font-size="13" font-weight="700" fill="var(--canopy-text)">LinkedIn</text><text x="660" y="142" text-anchor="middle" class="svgmono" font-size="10.5" fill="var(--muted)">matched audience</text>
+      <path d="M760 130 L806 130" stroke="var(--barblue)" stroke-width="2" marker-end="url(#a2)"/>
+      <rect x="808" y="104" width="82" height="52" rx="8" fill="none" stroke="var(--barblue)" stroke-width="2"/><text x="849" y="127" text-anchor="middle" class="svgtx" font-size="11.5" fill="var(--ink)">Person</text><text x="849" y="143" text-anchor="middle" class="svgmono" font-size="9.5" fill="var(--muted)">filter</text>
+      <defs><marker id="a2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="var(--muted)"/></marker></defs>
+    </svg>
+    </div>
+    <figcaption>Enrichment workflow: combine the top two or three signals in Clay into a scored account list, upload to LinkedIn as a Matched Audience, then layer the person-level filters. This is how a static industry list becomes an in-market one.</figcaption>
+  </figure>
+
+
+  <!-- SECTION 3: SEARCH -->
+  <div class="secnum">04 / PAID SEARCH</div>
+  <h2 class="sec">Capture the ones <em>already looking</em></h2>
+  <p class="body">Google's job here is different from LinkedIn's. It catches the buyers who are already searching for a video partner, defends the ZANE name, and intercepts people comparing the productized competitors. All thirteen clusters are below, grouped by intent. Higher intent means smaller volume and higher value.</p>
+
+  <div class="tblwrap">
+  <table class="kwtable">
+    <thead><tr><th>Keyword cluster</th><th>Intent</th><th>Buyer signal</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td class="kwc">video production company [city]</td><td><span class="pill p-hi">High</span></td><td>Ready to hire, geo-specific</td><td>LA, NYC, Chicago. Highest intent, start here</td></tr>
+      <tr><td class="kwc">commercial video production company</td><td><span class="pill p-hi">High</span></td><td>Active evaluation</td><td>Core category term</td></tr>
+      <tr><td class="kwc">brand video production agency</td><td><span class="pill p-hi">High</span></td><td>Brand-film buyer</td><td>Maps to the primary persona</td></tr>
+      <tr><td class="kwc">corporate video production company</td><td><span class="pill p-hi">High</span></td><td>B2B / corporate buyer</td><td>Aligns to SaaS and corporate lane</td></tr>
+      <tr><td class="kwc">product / explainer video company</td><td><span class="pill p-hi">High</span></td><td>Product-video buyer</td><td>Competes with Sandwich, Vidico</td></tr>
+      <tr><td class="kwc">social media video production agency</td><td><span class="pill p-hi">High</span></td><td>Social-content buyer</td><td>High-volume format need</td></tr>
+      <tr><td class="kwc">[competitor] alternative / vs</td><td><span class="pill p-hi">High</span></td><td>Comparing named options</td><td>Conquest on Lemonlight, Sandwich. Exact Match, separate budget</td></tr>
+      <tr><td class="kwc">ZANE Productions / Director ZANE</td><td><span class="pill p-hi">High</span></td><td>Brand search</td><td>Brand defense, cheap, protects the name</td></tr>
+      <tr><td class="kwc">video production pricing / cost</td><td><span class="pill p-md">Medium</span></td><td>Budgeting stage</td><td>Answers the pricing-clarity white space</td></tr>
+      <tr><td class="kwc">best video production companies</td><td><span class="pill p-md">Medium</span></td><td>Building a shortlist</td><td>Comparison stage, needs strong landing page</td></tr>
+      <tr><td class="kwc">b2b video marketing agency</td><td><span class="pill p-md">Medium</span></td><td>Outcome-minded buyer</td><td>Leans into the performance-creative angle</td></tr>
+      <tr><td class="kwc">music video production company</td><td><span class="pill p-md">Medium</span></td><td>Artist / label buyer</td><td>Origin lane, keep as a defined segment</td></tr>
+      <tr><td class="kwc">video marketing strategy / ideas</td><td><span class="pill p-lo">Low</span></td><td>Researching, not buying</td><td>Content-only. Not a conversion play</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <figure>
+    <div class="figwrap">
+    <svg viewBox="0 0 900 300" role="img" aria-label="Search intent pyramid from high intent at top to low intent at base">
+      <polygon points="450,30 560,130 340,130" fill="var(--barcanopy)" opacity=".9"/>
+      <polygon points="340,134 560,134 640,215 260,215" fill="var(--barclay)" opacity=".85"/>
+      <polygon points="260,219 640,219 720,295 180,295" fill="var(--barterra)" opacity=".8"/>
+      <text x="450" y="100" text-anchor="middle" class="svgtx" font-size="13" font-weight="700" fill="#0A0A0C">HIGH</text>
+      <text x="450" y="185" text-anchor="middle" class="svgtx" font-size="13" font-weight="700" fill="#0A0A0C">MEDIUM</text>
+      <text x="450" y="265" text-anchor="middle" class="svgtx" font-size="13" font-weight="700" fill="#fff">LOW</text>
+      <text x="600" y="95" class="svgmono" font-size="11" fill="var(--muted)">smallest volume · highest value · fund first</text>
+      <text x="655" y="180" class="svgmono" font-size="11" fill="var(--muted)">comparison + pricing</text>
+      <text x="730" y="265" class="svgmono" font-size="11" fill="var(--muted)">content only</text>
+    </svg>
+    </div>
+    <figcaption>Budget follows intent. The high-intent tier is small but converts; the low-intent tier is broad and researches. Start at the top and only widen once the top tier is captured.</figcaption>
+  </figure>
+
+  <div class="grid2">
+    <div class="calloutbox" style="border-left-color:var(--canopy)">
+      <h4>Where to <em>start</em></h4>
+      <p class="body" style="font-size:13px;margin:2px 0">Launch six: <b style="color:var(--ink)">video production company (each city), commercial video production, brand video agency, corporate video production, product/explainer video, plus brand defense.</b> Add one conquest campaign on Exact Match with its own budget. Spend level set once the monthly budget is confirmed.</p>
+    </div>
+    <div class="calloutbox" style="border-left-color:var(--hazard)">
+      <h4>Negative <em>keywords</em></h4>
+      <p class="body" style="font-size:13px;margin:2px 0"><b style="color:var(--ink)">Exclude:</b> jobs, salary, careers, intern (job seekers); free, DIY, template, how to, tutorial, course (non-buyers); software, app, editing software, AI video generator (tool seekers); stock footage (wrong product). Each one sweeps out traffic that will never hire a production company.</p>
+    </div>
+  </div>
+</section>
+<section class="view" id="ecosystem">
+
+
+  <!-- HERO -->
+  <div class="dark-panel pin" style="border-radius:16px;padding:34px 32px;margin-top:26px">
+    <div class="kicker" style="color:var(--jet-pink)">Channel Ecosystem Recon · public sources only</div>
+    <h1 class="big">Demand comes in.<br>Nothing <span class="b">qualifies</span> it<br>or <span class="b">proves</span> it.</h1>
+    <p class="lede" style="color:rgba(216,212,200,.9);max-width:800px">ZANE creates demand through a strong founder brand and captures it through some of the best organic search in the category. Both work. What sits between that top of funnel and the inbound quote form is open: no layer qualifies the audience, retargets it, or measures what it produced. That layer is the opportunity, and it is exactly what a demand system adds.</p>
+    <div class="metastrip" style="border-top-color:rgba(255,255,255,.15)">
+      <span>Create · <b>running thin</b></span>
+      <span>Capture · <b>running well</b></span>
+      <span>Connect · <b>to build</b></span>
+      <span>Intelligence · <b>to build</b></span>
+    </div>
+  </div>
+
+  <!-- CURRENT FOOTPRINT -->
+  <div class="secnum">01 / WHAT IS RUNNING TODAY</div>
+  <h2 class="sec">The current <em>footprint</em></h2>
+  <p class="body">Read from public sources with no account access. This describes what each channel is for and what is visibly running, not a judgement of how it is run. Where a check could not be completed, it is flagged rather than assumed.</p>
+
+  <div class="foot-grid">
+    <div class="fcard">
+      <div class="fh"><span class="fn">Organic search &amp; SEO</span><span class="fs"><span class="s-pill s-well">Running well</span></span></div>
+      <p class="role">Capture · harvest people already looking</p>
+      <p>Deep programmatic SEO: dedicated Los Angeles, New York City, and Chicago pages, a page per service, an active blog, an FAQ, and a large case-study library. Google Search Console and Bing verified. This is the strongest engine in the footprint.</p>
+    </div>
+    <div class="fcard">
+      <div class="fh"><span class="fn">Founder brand &amp; social</span><span class="fs"><span class="s-pill s-thin">Running thin</span></span></div>
+      <p class="role">Create · make demand exist among buyers not yet searching</p>
+      <p>Director ZANE posts across LinkedIn, Instagram, TikTok, YouTube, and Facebook, mixing behind-the-scenes, portfolio, and industry commentary. The raw material for demand creation is here. It is not yet pointed at the business buyer as a system.</p>
+    </div>
+    <div class="fcard">
+      <div class="fh"><span class="fn">Reviews &amp; proof</span><span class="fs"><span class="s-pill s-well">Running well</span></span></div>
+      <p class="role">Connect · build trust</p>
+      <p>100-plus five-star reviews across Google, Clutch, and UpCity, plus DesignRush recognition and named-client testimonials. A genuine trust asset that most competitors cannot match at this volume.</p>
+    </div>
+    <div class="fcard">
+      <div class="fh"><span class="fn">LinkedIn presence</span><span class="fs"><span class="s-pill s-thin">Running thin</span></span></div>
+      <p class="role">Connect · the hub, once activated</p>
+      <p>Company page near 568 followers with occasional promotional posts; the founder profile is more active. Present but not yet the qualification and retargeting hub it can become. Follower counts vary by source, so treat as approximate.</p>
+    </div>
+    <div class="fcard">
+      <div class="fh"><span class="fn">Website &amp; capture form</span><span class="fs"><span class="s-pill s-thin">Running thin</span></span></div>
+      <p class="role">Intelligence · where the data should start</p>
+      <p>Wix site with a native "Get a Free Quote" contact form. No customer relationship manager, visitor identification, or conversion-capture tooling detected from the outside. The LinkedIn Insight Tag could not be confirmed and is flagged for verification.</p>
+    </div>
+    <div class="fcard">
+      <div class="fh"><span class="fn">Email &amp; nurture</span><span class="fs"><span class="s-pill s-build">To build</span></span></div>
+      <p class="role">Activate · owned audience, activated on signal</p>
+      <p>No newsletter signup or nurture sequence is visible. Inbound quote requests are handled directly. An owned-audience layer that keeps ZANE in front of past viewers and leads is an opening.</p>
+    </div>
+    <div class="fcard">
+      <div class="fh"><span class="fn">Paid search</span><span class="fs"><span class="s-pill s-build">To build</span></span></div>
+      <p class="role">Capture · defend the brand, catch high intent</p>
+      <p>No paid search is evident. Because the organic footprint ranks well, a focused paid layer would defend the ZANE name and catch the high-intent city and category queries competitors bid on. Verify current activity at build.</p>
+    </div>
+    <div class="fcard">
+      <div class="fh"><span class="fn">Paid social</span><span class="fs"><span class="s-pill s-later">Not yet verified</span></span></div>
+      <p class="role">Create &amp; Extend · reach and scale</p>
+      <p>ZANE builds paid-social ad assets for clients. Whether ZANE runs ads for itself could not be confirmed against the public ad libraries with these tools, so it is flagged rather than assumed either way. This is a week-one verification.</p>
+    </div>
+  </div>
+
+  <div class="flagbar"><b>Method note</b> · the LinkedIn and Meta ad-library checks were attempted but could not be completed reliably from public tools alone, and the LinkedIn Insight Tag could not be confirmed from the page. These three items are flagged for a quick week-one verification rather than assumed in either direction.</div>
+
+
+  <!-- FUNNEL COVERAGE -->
+  <div class="secnum">02 / FUNNEL COVERAGE</div>
+  <h2 class="sec">The <em>system</em> ZANE would run</h2>
+  <p class="body">Impactable runs every channel as one motion with LinkedIn as the hub. Mapped against that motion, ZANE is strong at the two ends and open in the middle. Each bar shows how built-out a layer is today. The label says what the layer is for and what we would run.</p>
+  <figure>
+    <div class="figwrap">
+    <svg viewBox="0 0 900 400" role="img" aria-label="Funnel coverage by layer, showing how built-out each of six layers is today">
+      <g class="svgtx" font-size="13.5" font-weight="700" fill="var(--ink)">
+        <text x="0" y="42">CREATE</text>
+        <text x="0" y="102">CONNECT</text>
+        <text x="0" y="162">CAPTURE</text>
+        <text x="0" y="222">EXTEND</text>
+        <text x="0" y="282">ACTIVATE</text>
+        <text x="0" y="342">INTELLIGENCE</text>
+      </g>
+      <!-- ghost tracks -->
+      <g fill="none" stroke="var(--line)" stroke-width="1">
+        <rect x="180" y="26" width="560" height="24" rx="4"/>
+        <rect x="180" y="86" width="560" height="24" rx="4"/>
+        <rect x="180" y="146" width="560" height="24" rx="4"/>
+        <rect x="180" y="206" width="560" height="24" rx="4" stroke-dasharray="4 4"/>
+        <rect x="180" y="266" width="560" height="24" rx="4"/>
+        <rect x="180" y="326" width="560" height="24" rx="4"/>
+      </g>
+      <!-- fills -->
+      <rect x="180" y="26" width="252" height="24" rx="4" fill="var(--barcanopy)"/>
+      <rect x="180" y="86" width="45" height="24" rx="4" fill="var(--barblue)"/>
+      <rect x="180" y="146" width="437" height="24" rx="4" fill="var(--barterra)"/>
+      <rect x="180" y="266" width="168" height="24" rx="4" fill="var(--barmoss)"/>
+      <rect x="180" y="326" width="56" height="24" rx="4" fill="var(--barpink)"/>
+      <!-- status labels -->
+      <g class="svgmono" font-size="11" fill="var(--muted)">
+        <text x="748" y="43">running thin</text>
+        <text x="748" y="103">to build · the hub</text>
+        <text x="748" y="163">running well</text>
+        <text x="748" y="223">not yet needed</text>
+        <text x="748" y="283">running thin</text>
+        <text x="748" y="343">to build</text>
+      </g>
+    </svg>
+    </div>
+    <figcaption>Coverage is directional, read from public signals, not a score. The two ends (Create, Capture) carry real weight. The middle (Connect, Intelligence) is where the system gets built, and Extend waits until there is a qualified pool to scale against.</figcaption>
+  </figure>
+
+  <div style="margin-top:10px">
+    <div class="lyr"><div><div class="lname" style="color:var(--canopy-text)">Create</div><div class="lfor">make demand exist among buyers not yet searching</div><div class="lrun"><span class="s-pill s-thin">Running thin</span></div></div>
+      <div class="lread"><b>What we would run:</b> Thought Leader Ads on the founder's existing posts, so no creative discovery phase is needed. The founder brand becomes the cheapest reach in the system, pointed for the first time at the marketing and creative buyer rather than a general audience.</div></div>
+    <div class="lyr"><div><div class="lname" style="color:var(--blue-text)">Connect</div><div class="lfor">qualify, convert, and build trust · the hub</div><div class="lrun"><span class="s-pill s-build">To build</span></div></div>
+      <div class="lread"><b>What we would run:</b> the LinkedIn layer that filters everyone the brand and search bring in by seniority, function, and company, then retargets the ones who fit. This is the single largest opening. It reads signal off every other channel and turns organic reach into a qualified pool.</div></div>
+    <div class="lyr"><div><div class="lname" style="color:var(--terra-text)">Capture</div><div class="lfor">harvest people already looking</div><div class="lrun"><span class="s-pill s-well">Running well</span></div></div>
+      <div class="lread"><b>What we would add:</b> the organic engine is strong. A focused paid-search layer defends the ZANE name and catches the high-intent city and category queries competitors bid on, feeding the same retargeting pool the brand builds.</div></div>
+    <div class="lyr"><div><div class="lname" style="color:var(--clay-text)">Extend</div><div class="lfor">scale reach against an already-qualified pool</div><div class="lrun"><span class="s-pill s-later">Not yet needed</span></div></div>
+      <div class="lread"><b>Why later:</b> Meta and programmatic inherit a pool, they cannot qualify one. They earn budget only after the Connect layer has built a qualified audience worth scaling against. Naming this now keeps the opening proposal honest and small.</div></div>
+    <div class="lyr"><div><div class="lname" style="color:var(--moss-text)">Activate</div><div class="lfor">turn signal into conversations</div><div class="lrun"><span class="s-pill s-thin">Running thin</span></div></div>
+      <div class="lread"><b>What we would add:</b> the inbound quote motion works. On top of it, an owned-audience nurture and signal-triggered outreach keep ZANE in front of warm accounts and past viewers, so demand does not go cold between projects.</div></div>
+    <div class="lyr"><div><div class="lname" style="color:var(--pink-text)">Intelligence</div><div class="lfor">the layer underneath all of it</div><div class="lrun"><span class="s-pill s-build">To build</span></div></div>
+      <div class="lread"><b>What we would run:</b> the Insight Tag, a customer relationship manager connection, and conversion capture, so every layer above can be measured against real outcomes. Without this, the strong top of funnel cannot be tied to pipeline. This is the measurement white space made concrete.</div></div>
+  </div>
+
+  <!-- THE GAP -->
+  <div class="secnum">03 / THE SINGLE LARGEST GAP</div>
+  <h2 class="sec">The <em>missing middle</em></h2>
+  <p class="body">Put the footprint in one line and the opening is obvious. Strong demand creation and strong capture both flow into a single inbound form, with nothing in between to qualify who arrived, retarget the ones who fit, or measure what any of it produced.</p>
+  <figure>
+    <div class="figwrap">
+    <svg viewBox="0 0 900 280" role="img" aria-label="Demand flows from create and capture into an inbound form with no qualify or measure layer between">
+      <!-- inflows -->
+      <rect x="20" y="40" width="180" height="52" rx="10" fill="none" stroke="var(--barcanopy)" stroke-width="2"/><text x="110" y="63" text-anchor="middle" class="svgtx" font-size="13" font-weight="700" fill="var(--canopy-text)">Create</text><text x="110" y="80" text-anchor="middle" class="svgmono" font-size="10" fill="var(--muted)">founder brand</text>
+      <rect x="20" y="150" width="180" height="52" rx="10" fill="none" stroke="var(--barterra)" stroke-width="2"/><text x="110" y="173" text-anchor="middle" class="svgtx" font-size="13" font-weight="700" fill="var(--terra-text)">Capture</text><text x="110" y="190" text-anchor="middle" class="svgmono" font-size="10" fill="var(--muted)">organic search</text>
+      <!-- gap zone -->
+      <rect x="300" y="30" width="240" height="182" rx="12" fill="none" stroke="var(--barpink)" stroke-width="2" stroke-dasharray="6 5"/>
+      <text x="420" y="24" text-anchor="middle" class="svgmono" font-size="11" font-weight="700" fill="var(--pink-text)">THE MISSING MIDDLE</text>
+      <text x="420" y="112" text-anchor="middle" class="svgtx" font-size="13" font-weight="700" fill="var(--ink)">Qualify · Retarget · Measure</text>
+      <text x="420" y="134" text-anchor="middle" class="svgmono" font-size="10.5" fill="var(--muted)">Connect + Intelligence</text>
+      <text x="420" y="156" text-anchor="middle" class="svgmono" font-size="10.5" fill="var(--muted)">open today</text>
+      <!-- flows in -->
+      <path d="M200 66 C 250 66, 260 100, 298 100" stroke="var(--muted)" stroke-width="1.6" fill="none" marker-end="url(#e1)"/>
+      <path d="M200 176 C 250 176, 260 142, 298 142" stroke="var(--muted)" stroke-width="1.6" fill="none" marker-end="url(#e1)"/>
+      <!-- out to form -->
+      <path d="M540 121 L636 121" stroke="var(--muted)" stroke-width="1.6" marker-end="url(#e1)"/>
+      <rect x="638" y="95" width="150" height="52" rx="10" fill="none" stroke="var(--line)" stroke-width="1.6"/><text x="713" y="118" text-anchor="middle" class="svgtx" font-size="12.5" fill="var(--ink)">Quote form</text><text x="713" y="135" text-anchor="middle" class="svgmono" font-size="10" fill="var(--muted)">inbound only</text>
+      <text x="713" y="176" text-anchor="middle" class="svgmono" font-size="10.5" fill="var(--muted)">then sales</text>
+      <defs><marker id="e1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="var(--muted)"/></marker></defs>
+    </svg>
+    </div>
+    <figcaption>The gap is not effort, it is sequence. The two hard-to-build ends already exist. Adding the qualify-and-measure middle is what turns a strong top of funnel into a demand system, and it is the same distribution-and-measurement opening the competitive analysis found across the whole market.</figcaption>
+  </figure>
+
+  <div class="calloutbox">
+    <h4>The read in one <em>sentence</em></h4>
+    <p class="body" style="margin:2px 0">ZANE already does the two things most video companies cannot: it creates demand through a real founder brand and captures it through category-leading organic search. The opening is the middle, a layer that qualifies that audience, retargets the ones who fit, and measures what they produced. Build that, and the rest of the system has something to stand on.</p>
+  </div>
+</section>
+<section class="view" id="howitworks">
+  <div class="secnum">01 / THE SYSTEM</div>
+  <h2 class="sec">One motion, <em>not a menu</em></h2>
+  <p class="body">Impactable runs every channel as one system with LinkedIn as the hub. Channels are not a list to pick from; they are a motion with an order, where each layer makes the next one cheaper. For ZANE, four layers matter now. One waits until it is earned.</p>
+
+  <div class="chan cc">
+    <div class="chh"><span class="clbl" style="color:var(--canopy-text)">Create</span><span class="cttl">The founder brand becomes paid reach</span><span class="ctags">Thought Leader Ads · YouTube</span></div>
+    <p>A produced founder series, one long-form interview, six short clips, and nine LinkedIn posts a month, distributed organically and run as Thought Leader Ads. Impactable leads the strategy, the pillars, the interviews, the edit, and the distribution. The founder just shows up. It is the cheapest, highest-trust reach in the system, pointed at the marketing and creative buyer.</p>
+    <div class="why"><b>Job in this account:</b> turn the founder's expertise into a warm, engaged pool of fit buyers, and feed the retargeting hub below it.</div>
+  </div>
+
+  <div class="chan cb">
+    <div class="chh"><span class="clbl" style="color:var(--blue-text)">Connect</span><span class="cttl">The hub that qualifies everything</span><span class="ctags">LinkedIn retargeting · ABM · Matched Audiences</span></div>
+    <p>LinkedIn is the one platform that filters an audience by seniority, function, industry, and company at the same time. It reads signal off every other channel, filters everyone the brand and search bring in, and retargets the ones who fit. This is the missing middle, and the reason LinkedIn anchors the plan.</p>
+    <div class="why"><b>Job in this account:</b> turn organic reach and search traffic into a qualified, retargetable pool instead of an anonymous form fill.</div>
+  </div>
+
+  <div class="chan ct">
+    <div class="chh"><span class="clbl" style="color:var(--terra-text)">Capture</span><span class="cttl">Defend the name, catch high intent</span><span class="ctags">Google brand defense · high-intent search</span></div>
+    <p>ZANE's organic search already ranks well, so paid search plays a focused role: defend the ZANE name and catch the high-intent city and category queries competitors bid on. It feeds the same retargeting pool the brand builds, so nothing captured is wasted.</p>
+    <div class="why"><b>Job in this account:</b> a lean capture layer that protects the brand and tops up the pool, added as the second channel once the hub is proven.</div>
+  </div>
+
+  <div class="chan cm">
+    <div class="chh"><span class="clbl" style="color:var(--moss-text)">Activate</span><span class="cttl">Turn signal into conversations</span><span class="ctags">Nurture · signal-triggered outreach</span></div>
+    <p>The inbound quote motion already works. On top of it, an owned-audience nurture and signal-triggered outreach keep ZANE in front of warm accounts and past viewers, so demand does not go cold between projects.</p>
+    <div class="why"><b>Job in this account:</b> keep the warm pool warm and hand sales the accounts leaning in, rather than waiting for them to fill out a form.</div>
+  </div>
+
+  <div class="chan cl">
+    <div class="chh"><span class="clbl" style="color:var(--clay-text)">Extend</span><span class="cttl">Scale reach, once there is a pool</span><span class="ctags">Meta · programmatic · not yet</span></div>
+    <p>Meta and programmatic inherit a qualified pool, they cannot build one. They earn budget only after the Connect layer has produced an audience worth scaling against. Naming this now keeps the starting proposal honest and small.</p>
+    <div class="why"><b>Job in this account:</b> held back on purpose until the hub has built a pool. Cheaper reach, but only when it has somewhere qualified to point.</div>
+  </div>
+
+  <div class="secnum">02 / THE SIGNAL LAYER</div>
+  <h2 class="sec">The layer <em>underneath</em> all of it</h2>
+  <p class="body">Most agencies rent a dashboard. Impactable runs on DemandSense, its own signal platform, composing five sources into one account-level view: who is engaging, from what company, in what role, and how close they are to buying. For a founder-led team, the most useful output is the list of accounts engaging heavily with no deal record yet, surfaced automatically and handed to sales.</p>
+  <figure>
+    <div class="figwrap">
+    <svg viewBox="0 0 900 300" role="img" aria-label="Five signal sources converging into one account view">
+      <g class="svgtx" font-size="12" fill="var(--ink)">
+        <text x="10" y="42">CRM data</text>
+        <text x="10" y="92">LinkedIn paid</text>
+        <text x="10" y="142">LinkedIn organic</text>
+        <text x="10" y="192">Companies on site</text>
+        <text x="10" y="242">People on site</text>
+      </g>
+      <g stroke="var(--muted)" stroke-width="1.4" fill="none">
+        <path d="M150 38 C 320 38, 340 140, 470 145"/>
+        <path d="M150 88 C 320 88, 350 142, 470 148"/>
+        <path d="M150 138 L470 150"/>
+        <path d="M150 188 C 320 188, 350 158, 470 152"/>
+        <path d="M150 238 C 320 238, 340 162, 470 155"/>
+      </g>
+      <circle cx="530" cy="150" r="58" fill="none" stroke="var(--barpink)" stroke-width="2.5"/>
+      <text x="530" y="145" text-anchor="middle" class="svgtx" font-size="14" font-weight="700" fill="var(--ink)">One account</text>
+      <text x="530" y="163" text-anchor="middle" class="svgtx" font-size="14" font-weight="700" fill="var(--ink)">view</text>
+      <path d="M588 150 L636 150" stroke="var(--barcanopy)" stroke-width="2.5" marker-end="url(#h1)"/>
+      <g>
+        <rect x="640" y="96" width="250" height="46" rx="9" fill="none" stroke="var(--barcanopy)" stroke-width="1.8"/><text x="765" y="118" text-anchor="middle" class="svgtx" font-size="12" fill="var(--ink)">Hot accounts to call now</text><text x="765" y="133" text-anchor="middle" class="svgmono" font-size="9.5" fill="var(--muted)">scored, multi-signal</text>
+        <rect x="640" y="152" width="250" height="46" rx="9" fill="none" stroke="var(--barblue)" stroke-width="1.8"/><text x="765" y="174" text-anchor="middle" class="svgtx" font-size="12" fill="var(--ink)">Hidden pipeline</text><text x="765" y="189" text-anchor="middle" class="svgmono" font-size="9.5" fill="var(--muted)">engaged, no deal yet</text>
+      </g>
+      <defs><marker id="h1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="var(--barcanopy)"/></marker></defs>
+    </svg>
+    </div>
+    <figcaption>Five sources compose into one account view, which surfaces the accounts sales should call this week and the ones engaging with no deal record yet. Web ID names the companies, and where possible the people, on the site.</figcaption>
+  </figure>
+
+  <div class="secnum">03 / MEASUREMENT</div>
+  <h2 class="sec">Proof that answers to a <em>CFO</em></h2>
+  <p class="body">This is the honest answer to the gap the whole market leaves open. Perfect attribution does not exist in B2B, so the discipline is to name the lowest claim the evidence supports and never overclaim. Three rungs, three claims.</p>
+  <div class="mladder">
+    <div class="mrung t1"><div class="mrk">Rung 1 · Attribution</div><h4>Click-verified</h4><p>Named companies and contacts with tracked click or conversion paths to pipeline. The number that survives CFO scrutiny. Lead here, always.</p></div>
+    <div class="mrung t2"><div class="mrk">Rung 2 · Influence</div><h4>Impression-verified</h4><p>Named accounts whose exposure timeline overlaps deal creation, shown as influence with the timeline, not claimed as a click.</p></div>
+    <div class="mrung t3"><div class="mrk">Rung 3 · Exposure</div><h4>Delivery, stated plainly</h4><p>Which accounts received impressions. A fact about delivery, never dressed up as a result.</p></div>
+  </div>
+  <p class="body">The first step for ZANE is conversion capture: the Insight Tag and defined events, verified in week one, because reporting is only as good as the capture underneath it. Once a CRM is connected, deal data matches to the accounts that saw or engaged with the ads, so influenced pipeline, closed-won, and closed-lost sit in one view. Here is what that looks like in practice.</p>
+  <div class="video">
+    <iframe src="https://www.youtube-nocookie.com/embed/7Pqs4jgyZA4" title="DemandSense influenced revenue walkthrough" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <div class="calloutbox"><h4>What we would <em>not</em> promise</h4><p class="body" style="margin:2px 0;font-size:13px">A specific cost per lead before the tracking is verified. Full econometric marketing-mix modeling, which is a specialist discipline we will not claim. And vanity reach as a success metric: the program is measured on qualified pipeline influence, because a program judged on the wrong number can look like failure while it is working.</p></div>
+</section>
+<section class="view" id="paths">
+  <div class="secnum">01 / FIT</div>
+  <h2 class="sec">Where we <em>fit</em></h2>
+  <p class="body">Honest fit first. Impactable is built to qualify and measure demand that already exists. ZANE is unusually strong exactly where that input comes from, which is what makes this a clean match.</p>
+  <div class="fitgrid">
+    <div class="card tl">
+      <h3 class="sub" style="margin-top:4px;font-size:15px">Your SEO traffic is the input</h3>
+      <p class="body" style="font-size:13px;margin:4px 0">ZANE already earns real organic search traffic to the site. Today it arrives, browses, and most of it leaves unnamed. That warm, in-market traffic is exactly what a retargeting funnel is built to qualify and convert.</p>
+    </div>
+    <div class="card tl">
+      <h3 class="sub" style="margin-top:4px;font-size:15px">Founder-led is the cheapest reach</h3>
+      <p class="body" style="font-size:13px;margin:4px 0">A founder thought-leadership motion is the lowest-cost, highest-trust content in the system, and it feeds the retargeting funnel with warm engagers. You show up for the interview; we run the strategy, the edit, the distribution, and the ads.</p>
+    </div>
+    <div class="card tb">
+      <h3 class="sub" style="margin-top:4px;font-size:15px">Aim small, earn the next step</h3>
+      <p class="body" style="font-size:13px;margin:4px 0">We start on one motion at a low monthly, prove it qualifies and converts your existing traffic, then add search and named-account plays only once the first layer is working. No overreach.</p>
+    </div>
+    <div class="card tb">
+      <h3 class="sub" style="margin-top:4px;font-size:15px">LinkedIn is the qualifying hub</h3>
+      <p class="body" style="font-size:13px;margin:4px 0">As a LinkedIn Marketing Partner, we use the one platform that filters your traffic firmographically and surfaces the named accounts leaning in. That is the middle ZANE does not run today, and it is our home turf.</p>
+    </div>
+  </div>
+
+  <div class="secnum">02 / THE OPTIONS</div>
+  <h2 class="sec">Three ways to <em>start</em></h2>
+  <p class="body">Scoped for ZANE, not a generic tier. Each option is a flat monthly fee plus ad spend. Start on the motion that fits, add the next layer when the first one proves out.</p>
+  <div class="pfwrap">
+  <table class="pricetable">
+    <thead>
+      <tr>
+        <th></th>
+        <th class="rechead"><span class="recpill">Recommended start</span><span class="pln">Option 1</span><span class="prc">$2,500/mo fee</span></th>
+        <th><span class="pln">Option 2</span><span class="prc">$4,000/mo fee</span></th>
+        <th><span class="pln">Option 3</span><span class="prc">$6,000/mo fee</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="rowsec"><td>The motion</td><td class="rec"></td><td></td><td></td></tr>
+      <tr><td>Founder thought leadership</td><td class="rec"><span class="ck">Full motion</span></td><td><span class="ck">Full motion</span></td><td><span class="ck">Full motion</span></td></tr>
+      <tr><td>LinkedIn retargeting funnel</td><td class="rec"><span class="ck">Yes</span></td><td><span class="ck">Yes</span></td><td><span class="ck">Yes</span></td></tr>
+      <tr><td>Paid search, in-market capture</td><td class="rec"><span class="cross">Option 2 and up</span></td><td><span class="ck">Yes</span></td><td><span class="ck">Yes</span></td></tr>
+      <tr><td>LinkedIn cold, custom ABM lists</td><td class="rec"><span class="cross">Option 3</span></td><td><span class="cross">Option 3</span></td><td><span class="ck">Yes</span></td></tr>
+      <tr class="rowsec"><td>Thought leadership, produced monthly</td><td class="rec"></td><td></td><td></td></tr>
+      <tr><td>Long-form video</td><td class="rec">1 per month</td><td>1 per month</td><td>1 per month</td></tr>
+      <tr><td>Short clips</td><td class="rec">6 per month</td><td>6 per month</td><td>6 per month</td></tr>
+      <tr><td>LinkedIn posts</td><td class="rec">9 per month, 3 a week</td><td>9 per month</td><td>9 per month</td></tr>
+      <tr><td>Strategy, pillars, interviews, edit, distribute</td><td class="rec"><span class="ck">Impactable-led</span></td><td><span class="ck">Impactable-led</span></td><td><span class="ck">Impactable-led</span></td></tr>
+      <tr class="rowsec"><td>Signals &amp; named accounts</td><td class="rec"></td><td></td><td></td></tr>
+      <tr><td>Most-engaged named accounts</td><td class="rec"><span class="ck">Yes</span></td><td><span class="ck">Yes</span></td><td><span class="ck">Yes</span></td></tr>
+      <tr><td>Website visitor ID</td><td class="rec"><span class="cross">Option 3</span></td><td><span class="cross">Option 3</span></td><td><span class="ck">Yes</span></td></tr>
+      <tr><td>Trigify organic-engager data</td><td class="rec"><span class="cross">Option 3</span></td><td><span class="cross">Option 3</span></td><td><span class="ck">Yes</span></td></tr>
+      <tr><td>LinkedIn + email touches to warmed accounts</td><td class="rec"><span class="cross">Option 3</span></td><td><span class="cross">Option 3</span></td><td><span class="ck">Yes</span></td></tr>
+      <tr class="rowsec"><td>Team &amp; reporting</td><td class="rec"></td><td></td><td></td></tr>
+      <tr><td>Strategist</td><td class="rec">Single channel</td><td>Multi-channel</td><td>Multi-channel</td></tr>
+      <tr><td>Reporting</td><td class="rec">Single channel</td><td>Dual-channel</td><td>Dual-channel, named accounts</td></tr>
+      <tr class="rowsec"><td>Ad spend managed</td><td class="rec"></td><td></td><td></td></tr>
+      <tr><td>Guided monthly spend</td><td class="rec">LinkedIn retargeting, starts light</td><td>Up to $5k LinkedIn + $5k Google</td><td>Up to $25k across both channels</td></tr>
+      <tr class="rowsec"><td>Why it fits ZANE</td><td class="rec"></td><td></td><td></td></tr>
+      <tr><td>In one line</td><td class="rec">Turns the founder brand and existing SEO traffic into qualified, named demand, at the lowest sensible entry</td><td>Adds in-market search so the funnel has more qualified traffic to convert, with named-account reporting across two channels</td><td>Adds cold ABM, visitor ID, organic-engager data, and outreach: the full named-account motion</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="pricenote"><b>The Demand Plan stays free.</b> The competitor read, targeting, and channel priority in this room are Impactable's own analysis, delivered at no cost and yours to keep whether or not we ever work together. Fees above are flat monthly and separate from ad spend, which you control.</div>
+
+  <div class="secnum">03 / PROOF</div>
+  <h2 class="sec">Matched <em>proof</em></h2>
+  <p class="body">Not a logo dump. Three engagements that match ZANE's actual situation.</p>
+  <div class="proof">
+    <div class="ph"><span class="pnm">HeyReach</span><span class="pmetric">13x ROAS · 158 customers</span></div>
+    <p class="pwhy"><b>Why this one for you:</b> product-led and organic-heavy, with a strong top of funnel that needed a qualification layer, not more reach. Signal analysis found roughly 23 percent of site traffic carried strong ICP fit. The closest match to Option 1: turn existing warm traffic into named, qualified demand.</p>
+  </div>
+  <div class="proof">
+    <div class="ph"><span class="pnm">Life Sciences</span><span class="pmetric">0 to 32 conversions in 90 days</span></div>
+    <p class="pwhy"><b>Why this one for you:</b> a true cold start on paid, from zero paid history to real conversions in one quarter. This is ZANE's exact position on the paid system, and proof the motion produces inside 90 days.</p>
+  </div>
+  <div class="proof">
+    <div class="ph"><span class="pnm">Professional Services</span><span class="pmetric">~$70 CPL · 60% form completion</span></div>
+    <p class="pwhy"><b>Why this one for you:</b> a lean-budget services business, not an enterprise. Proof the motion runs efficiently at a sensible starting spend, which is exactly what Option 1 is built for.</p>
+  </div>
+
+  <div class="secnum">04 / THE RECOMMENDATION</div>
+  <h2 class="sec">Start with <em>Option 1</em></h2>
+  <p class="body">One motion, run right. A founder thought-leadership engine, one long video, six short clips, and nine LinkedIn posts a month, produced and distributed by us, funneled into a LinkedIn retargeting layer that qualifies the SEO traffic ZANE already earns and surfaces the named accounts leaning in. You show up for the interviews; we run the strategy, the edits, the distribution, and the ads. At $2,500 a month plus a light retargeting spend, it turns two assets ZANE already has, the founder and the traffic, into named, qualified demand.</p>
+  <p class="body">Option 2 adds paid search once the funnel is working, so there is more in-market traffic to qualify. Option 3 adds the full cold and named-account motion: custom account lists, website visitor ID, Trigify organic-engager data, and warmed-account outreach. Each step is earned by the one before it, not assumed.</p>
+
+  <div class="dark-panel">
+    <div class="cta">
+      <h2>Turn the founder and the traffic<br>into <span class="em">named demand</span></h2>
+      <p>Book a call and we will scope Option 1 together: the content plan, the retargeting setup, and the week-one tracking. No pitch. The room and the plan are yours to keep either way.</p>
+      <div class="btnrow">
+        <a class="btn primary" href="https://landbot.online/v3/H-2201411-ZNNL8EM9RF7C2XAC/index.html" target="_blank" rel="noopener">Book a call</a>
+        <a class="btn ghost" href="https://impactable.marketing/competitor-intel-report" target="_blank" rel="noopener">The free Demand Plan</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <div class="foot">
+    <p class="fnote">Built from public sources with no account access. Estimates are indicative, not forecasts. Unknowns are flagged rather than filled in, and channel status reflects what is visibly running, not a judgement of execution. DemandSense and Web ID are Impactable's own software.</p>
+    <details>
+      <summary>Show full notes and limitations</summary>
+      <p class="full">Findings are read from the ZANE website, public social and review profiles, search listings, and competitor sites as of the analysis date, with no access to any ad account, analytics, or CRM. Competitor benchmarks and pricing are from public sources and named where used. Audience sizes, budget, list sizes, and the LinkedIn Insight Tag and paid-social activity are flagged for week-one verification rather than asserted. Pricing is pulled from the current published Impactable ladder and may change. Coverage readings are directional, not scores, and every opening is framed as sequence and opportunity, not as a fault in current work. Case-study figures are from Impactable engagements as published. DemandSense and Web ID are Impactable's own signal software, disclosed here so the signal layer is read as capability, not neutral third-party tooling.</p>
+    </details>
+  </div>
+</main>
+<script>
+(function(){
+  var root=document.documentElement, tbtn=document.getElementById('themeBtn');
+  var ids=['overview','whitespace','targeting','ecosystem','howitworks','paths'];
+  function showView(id){
+    if(ids.indexOf(id)===-1){ id='overview'; }
+    var views=document.querySelectorAll('.view');
+    for(var i=0;i<views.length;i++){ views[i].classList.toggle('active', views[i].id===id); }
+    var tabs=document.querySelectorAll('.rtab');
+    for(var j=0;j<tabs.length;j++){ tabs[j].classList.toggle('active', tabs[j].getAttribute('data-view')===id); }
+    if(window.scrollTo){ window.scrollTo(0,0); }
+  }
+  function fromHash(){ var h=(location.hash||'').replace('#',''); showView(h||'overview'); }
+  document.addEventListener('click', function(e){
+    var t=e.target.closest('[data-view]');
+    if(t){ e.preventDefault(); var v=t.getAttribute('data-view'); if(location.hash!=='#'+v){ location.hash=v; } else { showView(v); } return; }
+    var g=e.target.closest('[data-goto]');
+    if(g){ e.preventDefault(); var gv=g.getAttribute('data-goto'); location.hash=gv; }
+  });
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+  var saved=null; try{saved=localStorage.getItem('imp_theme');}catch(e){}
+  if(saved){ root.setAttribute('data-theme',saved); }
+  function icon(){ tbtn.textContent = root.getAttribute('data-theme')==='light' ? '☀' : '☾'; }
+  icon();
+  tbtn.addEventListener('click', function(){
+    var th=root.getAttribute('data-theme')==='light'?'dark':'light';
+    root.setAttribute('data-theme',th);
+    try{localStorage.setItem('imp_theme',th);}catch(e){}
+    icon();
+  });
+})();
+</script>
+</body>
+</html>
