@@ -1,5 +1,19 @@
 <!doctype html>
 <html lang="en" data-theme="dark">
+<!--
+RECOMMENDATION VARIABLES (single source of truth)
+thesis             : Strong ends, empty middle. ZANE owns broadcast craft delivered direct, at campaign scale, across every category. The reach-and-proof frontier is the growth direction, not a lane ZANE holds today.
+entry_motion       : LinkedIn + Meta retargeting of the warm SEO and company-page traffic
+recommended_option : Option 1 (retargeting, LinkedIn + Meta)
+starting_motions   : LinkedIn retargeting, Meta retargeting, ad creative (no content motion to start)
+google_role        : in-market capture, Option 2 and up
+channel_order      : Connect (retargeting) -> Capture (Google) -> cold ABM + Activate
+create_engine_role : option-2-add (distribution deferred; ZANE declined content to start)
+sme_voice          : founder (behind-the-scenes, transcript-extracted)
+pinned_option      : Option 1
+create_proof_feature : heyreach
+tracking_state     : LinkedIn Insight Tag installed and pooling (confirmed on call)
+-->
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -262,6 +276,30 @@ ul.clean li strong{color:var(--ink)}
 @media(max-width:760px){.fitgrid{grid-template-columns:1fr}}
 .pfwrap{width:100%}
 @media(max-width:820px){.pfwrap{overflow-x:auto}.pfwrap .pricetable{min-width:720px}}
+/* --- growth system board (prospect-safe) --- */
+.gsboard{display:flex;flex-direction:column;gap:14px;margin:18px 0}
+.pillar{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.pillar.p-create{border-left:4px solid var(--canopy)} .pillar.p-capture{border-left:4px solid var(--terracotta)} .pillar.p-connect{border-left:4px solid var(--blue)} .pillar.p-convert{border-left:4px solid var(--moss)} .pillar.p-compound{border-left:4px solid var(--clay)}
+.pillar-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px;border-bottom:1px solid var(--line);padding-bottom:8px}
+.pillar-head .pn{font-family:'Archivo Black';font-size:15px;letter-spacing:-.01em}
+.pillar-head .pj{font-size:12.5px;color:var(--muted);margin-left:auto;text-align:right}
+.mrow{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--line)}
+.mrow:last-child{border-bottom:0}
+.mrow .mnm{font-size:13.5px;color:var(--ink);flex:1;min-width:0}
+.mrow .owner{font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.06em;color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:1px 5px;white-space:nowrap}
+.mrow .pips{display:inline-flex;gap:3px;white-space:nowrap}
+.mrow .pips i{width:7px;height:7px;border-radius:50%;background:var(--line);display:inline-block}
+.mrow .pips i.on{background:var(--chalk)}
+.bdg{font-family:'JetBrains Mono';font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:20px;white-space:nowrap}
+.bdg.b-start{background:var(--canopy);color:#0A0A0C}
+.bdg.b-run{border:1px solid #4a7a20;color:#4a7a20;background:transparent}
+[data-theme="dark"] .bdg.b-run{border-color:#7BAA3E;color:#7BAA3E}
+.bdg.b-build{border:1px solid var(--blue);color:var(--blue-text);background:transparent}
+[data-theme="dark"] .bdg.b-build{color:var(--blue-soft)}
+.bdg.b-later{border:1px dashed var(--muted);color:var(--muted);background:transparent}
+.gslegend{display:flex;flex-wrap:wrap;gap:14px;margin:8px 0 4px;font-size:12px;color:var(--chalk)}
+.gslegend span{display:inline-flex;align-items:center;gap:6px}
+@media(max-width:620px){.mrow{flex-wrap:wrap;gap:6px}.mrow .mnm{flex-basis:100%}}
 
 /* room-shell nav */
 .rtabs{display:flex;gap:2px;flex-wrap:wrap;align-items:center}
@@ -322,7 +360,7 @@ ul.clean li strong{color:var(--ink)}
     </a>
     <a class="move" data-goto="howitworks">
       <span class="mnum">04</span>
-      <span class="mbody"><span class="mt">The system that fills it</span><span class="md">One motion with LinkedIn as the hub, fed by the founder brand and by search, with a signal layer underneath and honest measurement that answers to a CFO, not a dashboard.</span></span>
+      <span class="mbody"><span class="mt">The system that fills it</span><span class="md">A light retargeting layer across LinkedIn and Meta qualifies the warm traffic ZANE already earns, with a signal layer underneath and honest measurement that answers to a CFO, not a dashboard. That retargeting layer is the entry motion.</span></span>
       <span class="marrow">How It Works →</span>
     </a>
     <a class="move" data-goto="paths">
@@ -1125,117 +1163,59 @@ ul.clean li strong{color:var(--ink)}
   </div>
 
   <!-- CURRENT FOOTPRINT -->
-  <div class="secnum">01 / WHAT IS RUNNING TODAY</div>
-  <h2 class="sec">The current <em>footprint</em></h2>
-  <p class="body">Read from public sources with no account access. This describes what each channel is for and what is visibly running, not a judgement of how it is run. Where a check could not be completed, it is flagged rather than assumed.</p>
-
-  <div class="foot-grid">
-    <div class="fcard">
-      <div class="fh"><span class="fn">Organic search &amp; SEO</span><span class="fs"><span class="s-pill s-well">Running well</span></span></div>
-      <p class="role">Capture · harvest people already looking</p>
-      <p>Deep programmatic SEO: dedicated Los Angeles, New York City, and Chicago pages, a page per service, an active blog, an FAQ, and a large case-study library. Google Search Console and Bing verified. This is the strongest engine in the footprint.</p>
-    </div>
-    <div class="fcard">
-      <div class="fh"><span class="fn">Founder brand &amp; social</span><span class="fs"><span class="s-pill s-thin">Running thin</span></span></div>
-      <p class="role">Create · make demand exist among buyers not yet searching</p>
-      <p>Director ZANE posts across LinkedIn, Instagram, TikTok, YouTube, and Facebook, mixing behind-the-scenes, portfolio, and industry commentary. The raw material for demand creation is here. It is not yet pointed at the business buyer as a system.</p>
-    </div>
-    <div class="fcard">
-      <div class="fh"><span class="fn">Reviews &amp; proof</span><span class="fs"><span class="s-pill s-well">Running well</span></span></div>
-      <p class="role">Connect · build trust</p>
-      <p>100-plus five-star reviews across Google, Clutch, and UpCity, plus DesignRush recognition and named-client testimonials. A genuine trust asset that most competitors cannot match at this volume.</p>
-    </div>
-    <div class="fcard">
-      <div class="fh"><span class="fn">LinkedIn presence</span><span class="fs"><span class="s-pill s-thin">Running thin</span></span></div>
-      <p class="role">Connect · the hub, once activated</p>
-      <p>Company page near 568 followers with occasional promotional posts; the founder profile is more active. Present but not yet the qualification and retargeting hub it can become. Follower counts vary by source, so treat as approximate.</p>
-    </div>
-    <div class="fcard">
-      <div class="fh"><span class="fn">Website &amp; capture form</span><span class="fs"><span class="s-pill s-thin">Running thin</span></span></div>
-      <p class="role">Intelligence · where the data should start</p>
-      <p>Wix site with a native "Get a Free Quote" contact form. No customer relationship manager, visitor identification, or conversion-capture tooling detected from the outside. The LinkedIn Insight Tag could not be confirmed and is flagged for verification.</p>
-    </div>
-    <div class="fcard">
-      <div class="fh"><span class="fn">Email &amp; nurture</span><span class="fs"><span class="s-pill s-build">To build</span></span></div>
-      <p class="role">Activate · owned audience, activated on signal</p>
-      <p>No newsletter signup or nurture sequence is visible. Inbound quote requests are handled directly. An owned-audience layer that keeps ZANE in front of past viewers and leads is an opening.</p>
-    </div>
-    <div class="fcard">
-      <div class="fh"><span class="fn">Paid search</span><span class="fs"><span class="s-pill s-build">To build</span></span></div>
-      <p class="role">Capture · defend the brand, catch high intent</p>
-      <p>No paid search is evident. Because the organic footprint ranks well, a focused paid layer would defend the ZANE name and catch the high-intent city and category queries competitors bid on. Verify current activity at build.</p>
-    </div>
-    <div class="fcard">
-      <div class="fh"><span class="fn">Paid social</span><span class="fs"><span class="s-pill s-later">Not yet verified</span></span></div>
-      <p class="role">Create &amp; Extend · reach and scale</p>
-      <p>ZANE builds paid-social ad assets for clients. Whether ZANE runs ads for itself could not be confirmed against the public ad libraries with these tools, so it is flagged rather than assumed either way. This is a week-one verification.</p>
-    </div>
+  <div class="secnum">01 / THE GROWTH SYSTEM</div>
+  <h2 class="sec">The board, <em>and where we would start</em></h2>
+  <p class="body">Impactable runs one growth system across five pillars. Here is the whole system for ZANE on one screen: what is already running, what we would start with, and what is sequenced for later. The badges are forward-looking, and the pips read as phase, not a grade.</p>
+  <div class="gslegend">
+    <span><span class="bdg b-run">Running</span> already in place at ZANE</span>
+    <span><span class="bdg b-start">Start</span> the recommended first motion</span>
+    <span><span class="bdg b-build">Build</span> during the engagement</span>
+    <span><span class="bdg b-later">Later</span> sequenced, earned by the step before</span>
   </div>
+  <div class="gsboard">
 
-  <div class="flagbar"><b>Method note</b> · the LinkedIn and Meta ad-library checks were attempted but could not be completed reliably from public tools alone, and the LinkedIn Insight Tag could not be confirmed from the page. These three items are flagged for a quick week-one verification rather than assumed in either direction.</div>
-
-
-  <!-- FUNNEL COVERAGE -->
-  <div class="secnum">02 / FUNNEL COVERAGE</div>
-  <h2 class="sec">The <em>system</em> ZANE would run</h2>
-  <p class="body">Impactable runs every channel as one motion with LinkedIn as the hub. Mapped against that motion, ZANE is strong at the two ends and open in the middle. Each bar shows how built-out a layer is today. The label says what the layer is for and what we would run.</p>
-  <figure>
-    <div class="figwrap">
-    <svg viewBox="0 0 900 400" role="img" aria-label="Funnel coverage by layer, showing how built-out each of six layers is today">
-      <g class="svgtx" font-size="13.5" font-weight="700" fill="var(--ink)">
-        <text x="0" y="42">CREATE</text>
-        <text x="0" y="102">CONNECT</text>
-        <text x="0" y="162">CAPTURE</text>
-        <text x="0" y="222">EXTEND</text>
-        <text x="0" y="282">ACTIVATE</text>
-        <text x="0" y="342">INTELLIGENCE</text>
-      </g>
-      <!-- ghost tracks -->
-      <g fill="none" stroke="var(--line)" stroke-width="1">
-        <rect x="180" y="26" width="560" height="24" rx="4"/>
-        <rect x="180" y="86" width="560" height="24" rx="4"/>
-        <rect x="180" y="146" width="560" height="24" rx="4"/>
-        <rect x="180" y="206" width="560" height="24" rx="4" stroke-dasharray="4 4"/>
-        <rect x="180" y="266" width="560" height="24" rx="4"/>
-        <rect x="180" y="326" width="560" height="24" rx="4"/>
-      </g>
-      <!-- fills -->
-      <rect x="180" y="26" width="252" height="24" rx="4" fill="var(--barcanopy)"/>
-      <rect x="180" y="86" width="45" height="24" rx="4" fill="var(--barblue)"/>
-      <rect x="180" y="146" width="437" height="24" rx="4" fill="var(--barterra)"/>
-      <rect x="180" y="266" width="168" height="24" rx="4" fill="var(--barmoss)"/>
-      <rect x="180" y="326" width="56" height="24" rx="4" fill="var(--barpink)"/>
-      <!-- status labels -->
-      <g class="svgmono" font-size="11" fill="var(--muted)">
-        <text x="748" y="43">running thin</text>
-        <text x="748" y="103">to build · the hub</text>
-        <text x="748" y="163">running well</text>
-        <text x="748" y="223">not yet needed</text>
-        <text x="748" y="283">running thin</text>
-        <text x="748" y="343">to build</text>
-      </g>
-    </svg>
+    <div class="pillar p-create">
+      <div class="pillar-head"><span class="pn">Create</span><span class="pj">Make demand and trust before anyone is in-market</span></div>
+      <div class="mrow"><span class="mnm">SEO and content foundation</span><span class="owner">ZANE</span><span class="pips"><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="bdg b-run">Running</span></div>
+      <div class="mrow"><span class="mnm">Founder and practitioner voice</span><span class="owner">ZANE</span><span class="pips"><i class="on"></i><i class="on"></i><i></i></span><span class="bdg b-run">Running</span></div>
+      <div class="mrow"><span class="mnm">Demand-creation engine, optional widening layer</span><span class="owner">IMP</span><span class="pips"><i class="on"></i><i></i><i></i></span><span class="bdg b-build">Build</span></div>
+      <div class="mrow"><span class="mnm">Thought Leader Ads amplification</span><span class="owner">IMP</span><span class="pips"><i></i><i></i><i></i></span><span class="bdg b-later">Later</span></div>
     </div>
-    <figcaption>Coverage is directional, read from public signals, not a score. The two ends (Create, Capture) carry real weight. The middle (Connect, Intelligence) is where the system gets built, and Extend waits until there is a qualified pool to scale against.</figcaption>
-  </figure>
 
-  <div style="margin-top:10px">
-    <div class="lyr"><div><div class="lname" style="color:var(--canopy-text)">Create</div><div class="lfor">make demand exist among buyers not yet searching</div><div class="lrun"><span class="s-pill s-thin">Running thin</span></div></div>
-      <div class="lread"><b>What we would run:</b> Thought Leader Ads on the founder's existing posts, so no creative discovery phase is needed. The founder brand becomes the cheapest reach in the system, pointed for the first time at the marketing and creative buyer rather than a general audience.</div></div>
-    <div class="lyr"><div><div class="lname" style="color:var(--blue-text)">Connect</div><div class="lfor">qualify, convert, and build trust · the hub</div><div class="lrun"><span class="s-pill s-build">To build</span></div></div>
-      <div class="lread"><b>What we would run:</b> the LinkedIn layer that filters everyone the brand and search bring in by seniority, function, and company, then retargets the ones who fit. This is the single largest opening. It reads signal off every other channel and turns organic reach into a qualified pool.</div></div>
-    <div class="lyr"><div><div class="lname" style="color:var(--terra-text)">Capture</div><div class="lfor">harvest people already looking</div><div class="lrun"><span class="s-pill s-well">Running well</span></div></div>
-      <div class="lread"><b>What we would add:</b> the organic engine is strong. A focused paid-search layer defends the ZANE name and catches the high-intent city and category queries competitors bid on, feeding the same retargeting pool the brand builds.</div></div>
-    <div class="lyr"><div><div class="lname" style="color:var(--clay-text)">Extend</div><div class="lfor">scale reach against an already-qualified pool</div><div class="lrun"><span class="s-pill s-later">Not yet needed</span></div></div>
-      <div class="lread"><b>Why later:</b> Meta and programmatic inherit a pool, they cannot qualify one. They earn budget only after the Connect layer has built a qualified audience worth scaling against. Naming this now keeps the opening proposal honest and small.</div></div>
-    <div class="lyr"><div><div class="lname" style="color:var(--moss-text)">Activate</div><div class="lfor">turn signal into conversations</div><div class="lrun"><span class="s-pill s-thin">Running thin</span></div></div>
-      <div class="lread"><b>What we would add:</b> the inbound quote motion works. On top of it, an owned-audience nurture and signal-triggered outreach keep ZANE in front of warm accounts and past viewers, so demand does not go cold between projects.</div></div>
-    <div class="lyr"><div><div class="lname" style="color:var(--pink-text)">Intelligence</div><div class="lfor">the layer underneath all of it</div><div class="lrun"><span class="s-pill s-build">To build</span></div></div>
-      <div class="lread"><b>What we would run:</b> the Insight Tag, a customer relationship manager connection, and conversion capture, so every layer above can be measured against real outcomes. Without this, the strong top of funnel cannot be tied to pipeline. This is the measurement white space made concrete.</div></div>
+    <div class="pillar p-connect">
+      <div class="pillar-head"><span class="pn">Connect</span><span class="pj">Turn anonymous attention into named, scored accounts</span></div>
+      <div class="mrow"><span class="mnm">LinkedIn retargeting, the qualifying hub</span><span class="owner">IMP</span><span class="pips"><i class="on"></i><i></i><i></i></span><span class="bdg b-start">Start</span></div>
+      <div class="mrow"><span class="mnm">Meta retargeting, wider reach</span><span class="owner">IMP</span><span class="pips"><i class="on"></i><i></i><i></i></span><span class="bdg b-start">Start</span></div>
+      <div class="mrow"><span class="mnm">LinkedIn Insight Tag, installed and pooling</span><span class="owner">ZANE</span><span class="pips"><i class="on"></i><i class="on"></i><i></i></span><span class="bdg b-run">Running</span></div>
+      <div class="mrow"><span class="mnm">DemandSense five-source signal layer</span><span class="owner">IMP</span><span class="pips"><i class="on"></i><i></i><i></i></span><span class="bdg b-start">Start</span></div>
+      <div class="mrow"><span class="mnm">Website Visitor ID</span><span class="owner">IMP</span><span class="pips"><i></i><i></i><i></i></span><span class="bdg b-later">Later</span></div>
+      <div class="mrow"><span class="mnm">Cold ABM and enrichment</span><span class="owner">IMP</span><span class="pips"><i></i><i></i><i></i></span><span class="bdg b-later">Later</span></div>
+    </div>
+
+    <div class="pillar p-capture">
+      <div class="pillar-head"><span class="pn">Capture</span><span class="pj">Catch the buyers already searching</span></div>
+      <div class="mrow"><span class="mnm">Organic search</span><span class="owner">ZANE</span><span class="pips"><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="bdg b-run">Running</span></div>
+      <div class="mrow"><span class="mnm">Paid search: brand defense and conquest</span><span class="owner">IMP</span><span class="pips"><i></i><i></i><i></i></span><span class="bdg b-later">Later</span></div>
+    </div>
+
+    <div class="pillar p-convert">
+      <div class="pillar-head"><span class="pn">Convert</span><span class="pj">Turn warm accounts into conversations and pipeline</span></div>
+      <div class="mrow"><span class="mnm">Site, service pages, and quote form</span><span class="owner">ZANE</span><span class="pips"><i class="on"></i><i class="on"></i><i></i></span><span class="bdg b-run">Running</span></div>
+      <div class="mrow"><span class="mnm">Offer and page optimization</span><span class="owner">IMP</span><span class="pips"><i class="on"></i><i></i><i></i></span><span class="bdg b-build">Build</span></div>
+      <div class="mrow"><span class="mnm">LinkedIn and email outreach to warmed accounts</span><span class="owner">IMP</span><span class="pips"><i></i><i></i><i></i></span><span class="bdg b-later">Later</span></div>
+    </div>
+
+    <div class="pillar p-compound">
+      <div class="pillar-head"><span class="pn">Compound</span><span class="pj">Measure, diagnose, and improve every quarter</span></div>
+      <div class="mrow"><span class="mnm">Quarterly Impact Report</span><span class="owner">IMP</span><span class="pips"><i></i><i></i><i></i></span><span class="bdg b-build">Build</span></div>
+      <div class="mrow"><span class="mnm">CAPI-certified attribution to pipeline</span><span class="owner">IMP</span><span class="pips"><i></i><i></i><i></i></span><span class="bdg b-later">Later</span></div>
+      <div class="mrow"><span class="mnm">One experiment per quarter</span><span class="owner">IMP</span><span class="pips"><i></i><i></i><i></i></span><span class="bdg b-later">Later</span></div>
+    </div>
+
   </div>
+  <p class="body">The Start set is Option 1: LinkedIn and Meta retargeting of the warm traffic, with the LinkedIn Insight Tag already installed and pooling an audience. The demand-creation engine is an optional widening layer. Everything marked Later is a real motion in the system, sequenced and earned by the step before it, never proposed in a vacuum.</p>
 
-  <!-- THE GAP -->
-  <div class="secnum">03 / THE SINGLE LARGEST GAP</div>
+  <div class="secnum">02 / THE SINGLE LARGEST GAP</div>
   <h2 class="sec">The <em>missing middle</em></h2>
   <p class="body">Put the footprint in one line and the opening is obvious. Strong demand creation and strong capture both flow into a single inbound form, with nothing in between to qualify who arrived, retarget the ones who fit, or measure what any of it produced.</p>
   <figure>
@@ -1274,14 +1254,14 @@ ul.clean li strong{color:var(--ink)}
   <p class="body">Impactable runs every channel as one system with LinkedIn as the hub. Channels are not a list to pick from; they are a motion with an order, where each layer makes the next one cheaper. For ZANE, four layers matter now. One waits until it is earned.</p>
 
   <div class="chan cc">
-    <div class="chh"><span class="clbl" style="color:var(--canopy-text)">Create</span><span class="cttl">The founder brand becomes paid reach</span><span class="ctags">Thought Leader Ads · YouTube</span></div>
-    <p>A produced founder series, one long-form interview, six short clips, and nine LinkedIn posts a month, distributed organically and run as Thought Leader Ads. Impactable leads the strategy, the pillars, the interviews, the edit, and the distribution. The founder just shows up. It is the cheapest, highest-trust reach in the system, pointed at the marketing and creative buyer.</p>
-    <div class="why"><b>Job in this account:</b> turn the founder's expertise into a warm, engaged pool of fit buyers, and feed the retargeting hub below it.</div>
+    <div class="chh"><span class="clbl" style="color:var(--canopy-text)">Create</span><span class="cttl">The demand-creation engine, optional and widening</span><span class="ctags">Thought Leader Ads · YouTube</span></div>
+    <p>An optional layer that widens the SEO motion ZANE already runs. From one monthly interview, we produce the behind-the-scenes content, blog, newsletter, and LinkedIn company-page posts, with YouTube titling and guidance, so you can stay behind the camera as long as you like. It is productized and measured, feeding more warm traffic into the retargeting pool. Impactable runs this exact motion on itself, and its pipeline is inbound-led.</p>
+    <div class="why"><b>Job in this account:</b> widen the top of funnel you already run and give retargeting more warm traffic to convert. Optional, and yours to lean into as far as you want. Measured to pipeline through CAPI-certified attribution once the events are set.</div>
   </div>
 
   <div class="chan cb">
-    <div class="chh"><span class="clbl" style="color:var(--blue-text)">Connect</span><span class="cttl">The hub that qualifies everything</span><span class="ctags">LinkedIn retargeting · ABM · Matched Audiences</span></div>
-    <p>LinkedIn is the one platform that filters an audience by seniority, function, industry, and company at the same time. It reads signal off every other channel, filters everyone the brand and search bring in, and retargets the ones who fit. This is the missing middle, and the reason LinkedIn anchors the plan.</p>
+    <div class="chh"><span class="clbl" style="color:var(--blue-text)">Connect</span><span class="cttl">The hub that qualifies everything</span><span class="ctags">LinkedIn retargeting · Meta retargeting · Matched Audiences</span></div>
+    <p>LinkedIn is the one platform that filters an audience by seniority, function, industry, and company at the same time. It reads signal off every other channel, filters everyone your organic traffic brings in, and retargets the ones who fit. Meta widens the same retargeting across Facebook and Instagram. This is the missing middle, and the reason retargeting anchors the plan.</p>
     <div class="why"><b>Job in this account:</b> turn organic reach and search traffic into a qualified, retargetable pool instead of an anonymous form fill.</div>
   </div>
 
@@ -1298,9 +1278,9 @@ ul.clean li strong{color:var(--ink)}
   </div>
 
   <div class="chan cl">
-    <div class="chh"><span class="clbl" style="color:var(--clay-text)">Extend</span><span class="cttl">Scale reach, once there is a pool</span><span class="ctags">Meta · programmatic · not yet</span></div>
-    <p>Meta and programmatic inherit a qualified pool, they cannot build one. They earn budget only after the Connect layer has produced an audience worth scaling against. Naming this now keeps the starting proposal honest and small.</p>
-    <div class="why"><b>Job in this account:</b> held back on purpose until the hub has built a pool. Cheaper reach, but only when it has somewhere qualified to point.</div>
+    <div class="chh"><span class="clbl" style="color:var(--clay-text)">Extend</span><span class="cttl">Cold scale, once there is a pool</span><span class="ctags">Cold Meta · programmatic · later</span></div>
+    <p>Meta retargeting of your warm traffic runs from day one. What waits is cold prospecting: Meta and programmatic reaching net-new audiences. Those inherit a qualified pool and cannot build one, so they earn budget only after the retargeting motion has produced an audience worth scaling against. Naming this now keeps the starting proposal honest and small.</p>
+    <div class="why"><b>Job in this account:</b> cold Meta and programmatic scale, held on purpose until the warm retargeting motion has built a pool to prospect against.</div>
   </div>
 
   <div class="secnum">02 / THE SIGNAL LAYER</div>
@@ -1354,92 +1334,89 @@ ul.clean li strong{color:var(--ink)}
 <section class="view" id="paths">
   <div class="secnum">01 / FIT</div>
   <h2 class="sec">Where we <em>fit</em></h2>
-  <p class="body">Honest fit first. Impactable is built to qualify and measure demand that already exists. ZANE is unusually strong exactly where that input comes from, which is what makes this a clean match.</p>
+  <p class="body">Honest fit first. ZANE already creates demand and captures it through category-leading organic search. The gap is the middle: no layer qualifies or retargets the warm traffic before it leaves. That is the cheapest, fastest lift, and it is exactly where we start.</p>
   <div class="fitgrid">
     <div class="card tl">
-      <h3 class="sub" style="margin-top:4px;font-size:15px">Your SEO traffic is the input</h3>
-      <p class="body" style="font-size:13px;margin:4px 0">ZANE already earns real organic search traffic to the site. Today it arrives, browses, and most of it leaves unnamed. That warm, in-market traffic is exactly what a retargeting funnel is built to qualify and convert.</p>
+      <h3 class="sub" style="margin-top:4px;font-size:15px">Your warm traffic is the input</h3>
+      <p class="body" style="font-size:13px;margin:4px 0">Thousands of website visitors a month, plus the named accounts already viewing your LinkedIn company page, arrive warm and mostly leave unnamed. Retargeting squeezes more conversions from traffic you already earn, no net-new cold spend.</p>
     </div>
     <div class="card tl">
-      <h3 class="sub" style="margin-top:4px;font-size:15px">Founder-led is the cheapest reach</h3>
-      <p class="body" style="font-size:13px;margin:4px 0">A founder thought-leadership motion is the lowest-cost, highest-trust content in the system, and it feeds the retargeting funnel with warm engagers. You show up for the interview; we run the strategy, the edit, the distribution, and the ads.</p>
+      <h3 class="sub" style="margin-top:4px;font-size:15px">LinkedIn filters, Meta widens</h3>
+      <p class="body" style="font-size:13px;margin:4px 0">LinkedIn is the one platform that filters your visitors firmographically, only the right seniority, industry, and company size. Meta widens the same retargeting across Facebook and Instagram. Together they keep you in front of warm buyers for 90 days.</p>
     </div>
     <div class="card tb">
-      <h3 class="sub" style="margin-top:4px;font-size:15px">Aim small, earn the next step</h3>
-      <p class="body" style="font-size:13px;margin:4px 0">We start on one motion at a low monthly, prove it qualifies and converts your existing traffic, then add search and named-account plays only once the first layer is working. No overreach.</p>
+      <h3 class="sub" style="margin-top:4px;font-size:15px">Baby steps, then earn the next</h3>
+      <p class="body" style="font-size:13px;margin:4px 0">Start on retargeting at a comfortable budget, prove the lift in inbound leads, then add paid search, then the named-account motion. Each step is earned by the one before it. No overreach, no leap to $30k a month.</p>
     </div>
     <div class="card tb">
-      <h3 class="sub" style="margin-top:4px;font-size:15px">LinkedIn is the qualifying hub</h3>
-      <p class="body" style="font-size:13px;margin:4px 0">As a LinkedIn Marketing Partner, we use the one platform that filters your traffic firmographically and surfaces the named accounts leaning in. That is the middle ZANE does not run today, and it is our home turf.</p>
+      <h3 class="sub" style="margin-top:4px;font-size:15px">One deal pays for it</h3>
+      <p class="body" style="font-size:13px;margin:4px 0">With a $75,000 to $100,000 average project, a single close from this funnel covers the investment many times over. The program is judged on qualified inbound lift first, and pipeline as it forms.</p>
     </div>
   </div>
 
   <div class="secnum">02 / THE OPTIONS</div>
   <h2 class="sec">Three ways to <em>start</em></h2>
-  <p class="body">Scoped for ZANE, not a generic tier. Each option is a flat monthly fee plus ad spend. Start on the motion that fits, add the next layer when the first one proves out.</p>
+  <p class="body">Scoped for ZANE, not a generic tier. Each option is a flat monthly fee plus ad spend you control. Start on retargeting, add the next layer once it proves out.</p>
   <div class="pfwrap">
   <table class="pricetable">
     <thead>
       <tr>
         <th></th>
-        <th class="rechead"><span class="recpill">Recommended start</span><span class="pln">Option 1</span><span class="prc">$2,500/mo fee</span></th>
-        <th><span class="pln">Option 2</span><span class="prc">$4,000/mo fee</span></th>
-        <th><span class="pln">Option 3</span><span class="prc">$6,000/mo fee</span></th>
+        <th class="rechead"><span class="recpill">Recommended start</span><span class="pln">Option 1</span><span class="prc">$3,500/mo fee</span></th>
+        <th><span class="pln">Option 2</span><span class="prc">$5,000/mo fee</span></th>
+        <th><span class="pln">Option 3</span><span class="prc">from $7,000/mo fee</span></th>
       </tr>
     </thead>
     <tbody>
       <tr class="rowsec"><td>The motion</td><td class="rec"></td><td></td><td></td></tr>
-      <tr><td>Founder thought leadership</td><td class="rec"><span class="ck">Full motion</span></td><td><span class="ck">Full motion</span></td><td><span class="ck">Full motion</span></td></tr>
-      <tr><td>LinkedIn retargeting funnel</td><td class="rec"><span class="ck">Yes</span></td><td><span class="ck">Yes</span></td><td><span class="ck">Yes</span></td></tr>
-      <tr><td>Paid search, in-market capture</td><td class="rec"><span class="cross">Option 2 and up</span></td><td><span class="ck">Yes</span></td><td><span class="ck">Yes</span></td></tr>
+      <tr><td>LinkedIn retargeting, firmographic filter</td><td class="rec"><span class="ck">Yes</span></td><td><span class="ck">Yes</span></td><td><span class="ck">Yes</span></td></tr>
+      <tr><td>Meta retargeting, Facebook and Instagram</td><td class="rec"><span class="ck">Yes</span></td><td><span class="ck">Yes</span></td><td><span class="ck">Yes</span></td></tr>
+      <tr><td>Ad creative, included in the fee</td><td class="rec"><span class="ck">Yes</span></td><td><span class="ck">Yes</span></td><td><span class="ck">Yes</span></td></tr>
+      <tr><td>Thought leadership and distribution motion</td><td class="rec"><span class="cross">Option 2 and up</span></td><td><span class="ck">Personal or company</span></td><td><span class="ck">Yes</span></td></tr>
+      <tr><td>Paid search, in-market capture</td><td class="rec"><span class="cross">Option 3</span></td><td><span class="cross">Option 3</span></td><td><span class="ck">Yes</span></td></tr>
       <tr><td>LinkedIn cold, custom ABM lists</td><td class="rec"><span class="cross">Option 3</span></td><td><span class="cross">Option 3</span></td><td><span class="ck">Yes</span></td></tr>
-      <tr class="rowsec"><td>Thought leadership, produced monthly</td><td class="rec"></td><td></td><td></td></tr>
-      <tr><td>Long-form video</td><td class="rec">1 per month</td><td>1 per month</td><td>1 per month</td></tr>
-      <tr><td>Short clips</td><td class="rec">6 per month</td><td>6 per month</td><td>6 per month</td></tr>
-      <tr><td>LinkedIn posts</td><td class="rec">9 per month, 3 a week</td><td>9 per month</td><td>9 per month</td></tr>
-      <tr><td>Strategy, pillars, interviews, edit, distribute</td><td class="rec"><span class="ck">Impactable-led</span></td><td><span class="ck">Impactable-led</span></td><td><span class="ck">Impactable-led</span></td></tr>
       <tr class="rowsec"><td>Signals &amp; named accounts</td><td class="rec"></td><td></td><td></td></tr>
-      <tr><td>Most-engaged named accounts</td><td class="rec"><span class="ck">Yes</span></td><td><span class="ck">Yes</span></td><td><span class="ck">Yes</span></td></tr>
-      <tr><td>Website visitor ID</td><td class="rec"><span class="cross">Option 3</span></td><td><span class="cross">Option 3</span></td><td><span class="ck">Yes</span></td></tr>
+      <tr><td>DemandSense, companies exposed and engaging</td><td class="rec"><span class="ck">Yes</span></td><td><span class="ck">Yes</span></td><td><span class="ck">Yes</span></td></tr>
+      <tr><td>Website Visitor ID</td><td class="rec"><span class="cross">Option 3</span></td><td><span class="cross">Option 3</span></td><td><span class="ck">Yes</span></td></tr>
       <tr><td>Trigify organic-engager data</td><td class="rec"><span class="cross">Option 3</span></td><td><span class="cross">Option 3</span></td><td><span class="ck">Yes</span></td></tr>
-      <tr><td>LinkedIn + email touches to warmed accounts</td><td class="rec"><span class="cross">Option 3</span></td><td><span class="cross">Option 3</span></td><td><span class="ck">Yes</span></td></tr>
+      <tr><td>LinkedIn + email outreach to warmed accounts</td><td class="rec"><span class="cross">Option 3</span></td><td><span class="cross">Option 3</span></td><td><span class="ck">Yes</span></td></tr>
       <tr class="rowsec"><td>Team &amp; reporting</td><td class="rec"></td><td></td><td></td></tr>
-      <tr><td>Strategist</td><td class="rec">Single channel</td><td>Multi-channel</td><td>Multi-channel</td></tr>
-      <tr><td>Reporting</td><td class="rec">Single channel</td><td>Dual-channel</td><td>Dual-channel, named accounts</td></tr>
-      <tr class="rowsec"><td>Ad spend managed</td><td class="rec"></td><td></td><td></td></tr>
-      <tr><td>Guided monthly spend</td><td class="rec">LinkedIn retargeting, starts light</td><td>Up to $5k LinkedIn + $5k Google</td><td>Up to $25k across both channels</td></tr>
+      <tr><td>Strategist</td><td class="rec">Retargeting-focused</td><td>Plus content</td><td>Multi-channel</td></tr>
+      <tr><td>Reporting</td><td class="rec">Retargeting + named accounts</td><td>Plus content</td><td>Full, named accounts</td></tr>
+      <tr class="rowsec"><td>Ad spend you control</td><td class="rec"></td><td></td><td></td></tr>
+      <tr><td>Guided monthly media</td><td class="rec">$4k to start: $2k LinkedIn + $2k Meta, up to $7.5k</td><td>Retargeting up to $7.5k</td><td>Up to $25k across channels</td></tr>
       <tr class="rowsec"><td>Why it fits ZANE</td><td class="rec"></td><td></td><td></td></tr>
-      <tr><td>In one line</td><td class="rec">Turns the founder brand and existing SEO traffic into qualified, named demand, at the lowest sensible entry</td><td>Adds in-market search so the funnel has more qualified traffic to convert, with named-account reporting across two channels</td><td>Adds cold ABM, visitor ID, organic-engager data, and outreach: the full named-account motion</td></tr>
+      <tr><td>In one line</td><td class="rec">Qualifies the traffic you already earn, with ad creative, at a baby-steps budget. No content motion until you want it</td><td>Adds a thought leadership and distribution motion, personal or company focus, to widen the top of funnel</td><td>Adds paid search and the full named-account motion for the enterprise accounts already viewing you</td></tr>
     </tbody>
   </table>
   </div>
-  <div class="pricenote"><b>The Demand Plan stays free.</b> The competitor read, targeting, and channel priority in this room are Impactable's own analysis, delivered at no cost and yours to keep whether or not we ever work together. Fees above are flat monthly and separate from ad spend, which you control.</div>
+  <div class="pricenote"><b>Option 1 fee is $3,500, ad management plus creative, with no content motion at this tier.</b> Media is separate and yours, $4,000 to start split evenly across LinkedIn and Meta, scaling up to $7,500 as the qualified pool grows. That puts the all-in at roughly $7,500 a month to start. The free Demand Plan, this room, stays yours regardless.</div>
 
   <div class="secnum">03 / PROOF</div>
   <h2 class="sec">Matched <em>proof</em></h2>
   <p class="body">Not a logo dump. Three engagements that match ZANE's actual situation.</p>
   <div class="proof">
     <div class="ph"><span class="pnm">HeyReach</span><span class="pmetric">13x ROAS · 158 customers</span></div>
-    <p class="pwhy"><b>Why this one for you:</b> product-led and organic-heavy, with a strong top of funnel that needed a qualification layer, not more reach. Signal analysis found roughly 23 percent of site traffic carried strong ICP fit. The closest match to Option 1: turn existing warm traffic into named, qualified demand.</p>
-  </div>
-  <div class="proof">
-    <div class="ph"><span class="pnm">Life Sciences</span><span class="pmetric">0 to 32 conversions in 90 days</span></div>
-    <p class="pwhy"><b>Why this one for you:</b> a true cold start on paid, from zero paid history to real conversions in one quarter. This is ZANE's exact position on the paid system, and proof the motion produces inside 90 days.</p>
+    <p class="pwhy"><b>Why this one for you:</b> organic-heavy, with a strong top of funnel that needed a qualification layer, not more reach. Signal analysis found roughly 23 percent of site traffic carried strong ICP fit. The closest match to Option 1: turn warm traffic you already earn into named, qualified demand.</p>
   </div>
   <div class="proof">
     <div class="ph"><span class="pnm">Professional Services</span><span class="pmetric">~$70 CPL · 60% form completion</span></div>
-    <p class="pwhy"><b>Why this one for you:</b> a lean-budget services business, not an enterprise. Proof the motion runs efficiently at a sensible starting spend, which is exactly what Option 1 is built for.</p>
+    <p class="pwhy"><b>Why this one for you:</b> a lean-budget services business, not an enterprise media spend. Proof the retargeting motion runs efficiently at exactly the starting budget Option 1 is built for.</p>
+  </div>
+  <div class="proof">
+    <div class="ph"><span class="pnm">Kong</span><span class="pmetric">CPL $1,000 to $111 · $663K pipeline</span></div>
+    <p class="pwhy"><b>Why this one for you:</b> a high-value, multi-region motion where a few named enterprise accounts carried the return. With a $75,000 to $100,000 average project, ZANE's economics work the same way: one or two right accounts justify the whole program.</p>
   </div>
 
   <div class="secnum">04 / THE RECOMMENDATION</div>
-  <h2 class="sec">Start with <em>Option 1</em></h2>
-  <p class="body">One motion, run right. A founder thought-leadership engine, one long video, six short clips, and nine LinkedIn posts a month, produced and distributed by us, funneled into a LinkedIn retargeting layer that qualifies the SEO traffic ZANE already earns and surfaces the named accounts leaning in. You show up for the interviews; we run the strategy, the edits, the distribution, and the ads. At $2,500 a month plus a light retargeting spend, it turns two assets ZANE already has, the founder and the traffic, into named, qualified demand.</p>
-  <p class="body">Option 2 adds paid search once the funnel is working, so there is more in-market traffic to qualify. Option 3 adds the full cold and named-account motion: custom account lists, website visitor ID, Trigify organic-engager data, and warmed-account outreach. Each step is earned by the one before it, not assumed.</p>
+  <h2 class="sec">Start with <em>retargeting</em></h2>
+  <p class="body">One motion, run right. Thousands of visitors a month, plus the enterprise accounts already checking your LinkedIn company page, arrive warm and leave unnamed. A light retargeting layer, LinkedIn filtered firmographically to the right seniority and company size, and Meta widening it across Facebook and Instagram, keeps you in front of those warm buyers for 90 days and squeezes more conversions from traffic you already earn. Your LinkedIn Insight Tag is already installed and pooling an audience, so this can start in weeks, not months.</p>
+  <p class="body">At $3,500 for ad management and creative, with $4,000 of media split across LinkedIn and Meta, the all-in is about $7,500 a month to start, and the read is simple and fast: an uptick in qualified inbound within 90 days, against your baseline of roughly 35 leads a month. No content motion until you want it. Once the lift is proven, Option 2 adds a thought leadership and distribution motion, personal or company focus, to widen the top of funnel. Option 3 adds the paid search you have already seen break even, plus cold ABM and outreach for the named accounts leaning in. Each step earned by the last.</p>
 
   <div class="dark-panel">
     <div class="cta">
-      <h2>Turn the founder and the traffic<br>into <span class="em">named demand</span></h2>
-      <p>Book a call and we will scope Option 1 together: the content plan, the retargeting setup, and the week-one tracking. No pitch. The room and the plan are yours to keep either way.</p>
+      <h2>Get more from the traffic<br>you <span class="em">already earn</span></h2>
+      <p>Book a call and we will scope Option 1 together: the retargeting setup across LinkedIn and Meta, the creative, and the 90-day read. No pitch. The room and the plan are yours to keep either way.</p>
       <div class="btnrow">
         <a class="btn primary" href="https://landbot.online/v3/H-2201411-ZNNL8EM9RF7C2XAC/index.html" target="_blank" rel="noopener">Book a call</a>
         <a class="btn ghost" href="https://impactable.marketing/competitor-intel-report" target="_blank" rel="noopener">The free Demand Plan</a>
